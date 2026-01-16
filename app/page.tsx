@@ -1,4 +1,5 @@
 import BigImage from "./components/home/BigImage";
+import Blog from "./components/home/Blog";
 import Category from "./components/home/Category";
 import CTA from "./components/home/CTA";
 import HomePage from "./components/home/HomePage";
@@ -15,7 +16,8 @@ export default function Home() {
       <BigImage src="/baby/happy-baby.png" alt="Happy Baby" />
       <Product />
       <BigImage src="/baby/strollerr.png" alt="Sleeping Baby" />
-      <Testimonial /> 
+      <Testimonial />
+      <Blog />
       <CTA />
     </main>
   );
