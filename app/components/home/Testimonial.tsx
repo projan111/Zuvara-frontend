@@ -3,6 +3,7 @@
 import { Icon } from "@iconify-icon/react";
 import { motion } from "framer-motion";
 import Button from "../common-ui/Button";
+import SectionHeading from "../common-ui/SectionHeading";
 
 const Testimonial = () => {
   const testimonials = [
@@ -52,15 +53,11 @@ const Testimonial = () => {
           viewport={{ once: true }}
           className="mb-4 md:mb-8 flex justify-between items-start md:items-center gap-4 flex-col lg:flex-row"
         >
-          <div className="">
-            <h2 className="text-2xl lg:text-4xl font-semibold text-foreground font-poppins mb-2">
-              What{" "}
-              <span className="text-[#8cd700] italic">Nepali Mothers </span>Say
-            </h2>
-            <p className="text-lg text-zinc-600 max-w-2xl mx-auto">
-              Real reviews from real mothers who trust Zuvara
-            </p>
-          </div>
+          <SectionHeading
+            title="What"
+            highlight="Nepali Mothers Say"
+            description="Real reviews from real mothers who trust Zuvara"
+          />
           {/* Google Review Button */}
           <div className="flex justify-center">
             <Button

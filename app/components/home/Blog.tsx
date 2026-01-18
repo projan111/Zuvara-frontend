@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar } from "lucide-react";
 import Button from "../common-ui/Button";
+import SectionHeading from "../common-ui/SectionHeading";
 
 const Blog = () => {
   const blogPosts = [
@@ -72,22 +73,11 @@ const Blog = () => {
       <div className="container mx-auto px-4 sm:px-4 lg:px-6 max-w-7xl">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row gap-4 mb-4 md:mb-0 justify-between item-start md:items-center ">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="md:mb-8"
-          >
-            <h2 className="text-2xl lg:text-4xl font-semibold text-foreground font-poppins">
-              Expert Insights on{" "}
-              <span className="text-[#8cd700] italic">Health & Care</span>
-            </h2>
-            <p className="text-lg text-zinc-600 max-w-2xl mt-2">
-              Stay informed about women&apos;s health, baby care essentials, and
-              the importance of proper hygiene and care practices.
-            </p>
-          </motion.div>
+          <SectionHeading
+            title="Expert Insights on"
+            highlight="Health & Care"
+            description="Stay informed about women's health, baby care essentials, and the importance of proper hygiene and care practices."
+          />
           {/* View All Button */}
           <motion.div
             initial={{ opacity: 0 }}

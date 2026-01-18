@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
 import Button from "../common-ui/Button";
+import SectionHeading from "../common-ui/SectionHeading";
 
 interface Variant {
   id: number;
@@ -120,35 +121,12 @@ const Product = () => {
     <section className="py-4 lg:py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-7xl">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row gap-2 justify-between md:items-center mb-4 md:mb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className=""
-          >
-            <h2 className="text-2xl lg:text-4xl font-semibold text-foreground font-poppins">
-              Featured <span className="text-[#8cd700] italic">Products</span>
-            </h2>
-            <p className="text-zinc-600 text-md mt-2">
-              Discover our best-selling items
-            </p>
-          </motion.div>
-          {/* View All Button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <Button
-              content="View All Products"
-              link="/products"
-              icon="healthicons:nappy-diaper"
-            />
-          </motion.div>
+        <div className="flex flex-col gap-2 justify-between md:items-center mb-4 md:mb-8">
+          <SectionHeading
+            title="Featured"
+            highlight="Products"
+            description="Discover our best-selling items"
+          />
         </div>
 
         {/* Products Grid */}
@@ -250,6 +228,22 @@ const Product = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+        <div className="flex w-full justify-center mt-8">
+          {/* View All Button */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <Button
+              content="View All Products"
+              link="/products"
+              icon="healthicons:nappy-diaper"
+            />
+          </motion.div>
         </div>
       </div>
     </section>

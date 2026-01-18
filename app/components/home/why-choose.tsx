@@ -1,38 +1,39 @@
 "use client";
 
-import { Leaf, Heart, Award, Truck } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const WhyChoose = () => {
   const values = [
     {
+      id: 3,
+      icon: "/icons/trusted.png",
+      title: "Trusted by Dermatologists",
+      description: "Dermatologist-tested & toxin-free for safer everyday use",
+    },
+    {
       id: 1,
-      icon: Heart,
-      title: "Made for Sensitive Skin",
-      description: "Gentle formulations designed for delicate baby skin care",
+      icon: "/icons/premium.png",
+      title: "Premium Quality",
+      description:
+        "Gentle, premium-quality materials that protect delicate baby skin",
     },
     {
       id: 2,
-      icon: Leaf,
+      icon: "/icons/nature.png",
       title: "100% Natural",
-      description: "Premium ingredients backed by dermatological research",
-    },
-    {
-      id: 3,
-      icon: Award,
-      title: "Trusted by Nepali Family",
-      description: "Serving families across Nepal with quality and care",
+      description: "Superior absorption for longer dryness and fewer changes",
     },
     {
       id: 4,
-      icon: Truck,
-      title: "Wholesale & Supply Options",
-      description: "Flexible bulk ordering for retailers and businesses",
+      icon: "/icons/comfortable.png",
+      title: "Comfortable Fit",
+      description: "Easy-fit design for comfort, movement, and leak protection",
     },
   ];
 
   return (
-    <section className="py-4 lg:py-8 bg-linear-to-b from-white to-zinc-50">
+    <section className="py-4 lg:py-12 bg-linear-to-r from-zinc-50 to-zinc-100 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-7xl">
         {/* Header */}
         <motion.div
@@ -40,12 +41,13 @@ const WhyChoose = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-10"
+          className="mb-10 text-center"
         >
           <h2 className="text-2xl lg:text-4xl font-semibold text-foreground font-poppins mb-2 md:mb-4">
-            Why Choose <span className="text-[#8cd700] italic">Zuvara</span>
+            Why Parents Choose{" "}
+            <span className="text-[#8cd700]">Zuvara</span>
           </h2>
-          <p className="text-md text-zinc-600 max-w-2xl">
+          <p className="text-md text-zinc-600 max-w-2xl mx-auto">
             Discover the core values that make Zuvara the trusted choice for
             families seeking premium baby care products in Nepal.
           </p>
@@ -54,7 +56,6 @@ const WhyChoose = () => {
         {/* Values Grid */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {values.map((value, index) => {
-            const IconComponent = value.icon;
             return (
               <motion.div
                 key={value.id}
@@ -65,15 +66,18 @@ const WhyChoose = () => {
                 className="group flex flex-col items-center text-center p-6 rounded-xl border border-zinc-200 bg-white hover:border-[#8cd700] transition-all duration-300"
               >
                 {/* Icon */}
-                <div className="mb-4 p-3 rounded-full bg-[#8cd700]/10 group-hover:bg-[#8cd700]/20 transition-colors">
-                  <IconComponent
-                    size={28}
+                <div className="mb-4 p-3">
+                  <Image
+                    src={value.icon}
+                    alt={value.title}
+                    width={50}
+                    height={50}
                     className="text-foreground group-hover:scale-110 transition-transform"
                   />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-md font-medium text-foreground mb-2 font-poppins">
+                <h3 className="text-md font-medium text-secondary! mb-2 font-poppins">
                   {value.title}
                 </h3>
 

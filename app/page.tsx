@@ -1,12 +1,12 @@
 import BigImage from "./components/home/BigImage";
-import Blog from "./components/home/Blog";
 import Category from "./components/home/Category";
 import CTA from "./components/home/CTA";
 import HomePage from "./components/home/HomePage";
 import LeftRight from "./components/home/LeftRight";
 import Product from "./components/home/Product";
-import Testimonial from "./components/home/Testimonial";
-import VideoSection from "./components/home/VideoSection";
+// import Blog from "./components/home/Blog";
+// import Testimonial from "./components/home/Testimonial";
+// import VideoSection from "./components/home/VideoSection";
 import WhyChoose from "./components/home/why-choose";
 
 export default function Home() {
@@ -16,12 +16,12 @@ export default function Home() {
       <WhyChoose />
       <LeftRight />
       <Category />
-      <VideoSection />
+      {/* <VideoSection /> */}
       {/* <BigImage src="/baby/happy-baby.png" alt="Happy Baby" /> */}
+      <BigImage/>
       <Product />
-      <BigImage src="/baby/strollerr.png" alt="Sleeping Baby" />
-      <Testimonial />
-      <Blog />
+      {/* <Testimonial /> */}
+      {/* <Blog /> */}
       <CTA />
     </main>
   );

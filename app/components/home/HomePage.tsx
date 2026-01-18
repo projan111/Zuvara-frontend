@@ -9,17 +9,17 @@ export default function HomePage() {
   return (
     <section className="relative w-full h-[90vh] md:h-screen lg:h-screen overflow-hidden flex">
       {/* Background Image - Right Side */}
-      <div className="absolute right-0 top-0 w-full lg:w-1/2 h-[45vh] md:h-screen lg:h-screen overflow-hidden">
+      <div className="absolute right-0 top-0 w-1/2 h-[45vh] md:h-screen lg:h-screen overflow-hidden">
         <Image
           src="/baby/baby-mom.png"
           alt="Happy Baby"
-          height={1000}
-          width={1000}
+          height={800}
+          width={800}
           className="object-contain h-full object-bottom"
           priority
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-white " />
+        {/* <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-white " /> */}
       </div>
       {/* Content - Left Side */}
       <div className="relative z-10 w-full flex flex-col justify-end mb-16 md:mb-0 md:justify-center mx-auto! px-4 sm:px-6 lg:px-6 max-w-7xl text-left">
@@ -28,11 +28,11 @@ export default function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-4xl lg:text-7xl mb-2 md:mb-4  text-foreground font-medium font-poppins"
+          className="text-4xl lg:text-6xl mb-2 md:mb-4  text-foreground font-medium font-poppins"
         >
-          Your child needs
+          Because your child
           <br />
-          <span className="text-[#8cd700] italic">Comfort & Safety</span>
+          <span className="text-[#8cd700]"> need comfort & safety.</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -63,9 +63,9 @@ export default function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-4 md:mt-12 flex flex-col gap-2"
+          className="mt-4 md:mt-12 flex gap-2 md:gap-4"
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ">
             <div className="flex items-center justify-center">
               <Icon
                 icon="fluent:shield-task-16-filled"
@@ -85,71 +85,6 @@ export default function HomePage() {
               In every Nepali mother&apos;s bag
             </p>
           </div>
-
-          {/* Trusted Partners Logos */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="mt-4 md:mt-8 pt-4 border-t border-zinc-200"
-          >
-            <p className="text-xs font-semibold text-[#8cd700] uppercase tracking-wider mb-2 md:mb-4">
-              Trusted Partners
-            </p>
-            <div className="flex items-center overflow-hidden w-full">
-              <motion.div
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="flex gap-0 w-max"
-              >
-                {/* Partner Logos - First Set */}
-                {[
-                  { name: "Partner 1", src: "/partners/plaza.png" },
-                  { name: "Partner 2", src: "/partners/plaza.png" },
-                  { name: "Partner 3", src: "/partners/plaza.png" },
-                  { name: "Partner 4", src: "/partners/plaza.png" },
-                  { name: "Partner 5", src: "/partners/plaza.png" },
-                ].map((partner, index) => (
-                  <div
-                    key={`logo-1-${index}`}
-                    className="h-16 w-44 shrink-0 flex items-center justify-center"
-                  >
-                    <div className="relative h-16 w-28">
-                      <Image
-                        src={partner.src}
-                        alt={partner.name}
-                        fill
-                        className="object-contain grayscale"
-                      />
-                    </div>
-                  </div>
-                ))}
-                {/* Partner Logos - Duplicate Set for Infinite Loop */}
-                {[
-                  { name: "Partner 1", src: "/partners/plaza.png" },
-                  { name: "Partner 2", src: "/partners/plaza.png" },
-                  { name: "Partner 3", src: "/partners/plaza.png" },
-                  { name: "Partner 4", src: "/partners/plaza.png" },
-                  { name: "Partner 5", src: "/partners/plaza.png" },
-                ].map((partner, index) => (
-                  <div
-                    key={`logo-2-${index}`}
-                    className="h-16 w-44 shrink-0 flex items-center justify-center"
-                  >
-                    <div className="relative h-16 w-28">
-                      <Image
-                        src={partner.src}
-                        alt={partner.name}
-                        fill
-                        className="object-contain grayscale"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

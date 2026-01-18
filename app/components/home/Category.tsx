@@ -1,113 +1,141 @@
 "use client";
 
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import SectionHeading from "../common-ui/SectionHeading";
+import { Icon } from "@iconify-icon/react";
 
 const Category = () => {
-  const categories = [
-    {
-      id: 1,
-      name: "Baby Care",
-      description:
-        "Gentle and safe products designed for your precious little one. Everything your baby needs for comfort and care.",
-      image: "/categories/infant.png",
-      link: "/shop/baby-care",
-    },
-    {
-      id: 2,
-      name: "Skincare",
-      description:
-        "Premium skincare solutions for all skin types. Nourish and protect delicate baby skin.",
-      image: "/categories/lotion.png",
-      link: "/shop/skincare",
-    },
-    {
-      id: 3,
-      name: "Diapers",
-      description:
-        "Premium diapers and essential baby products. Comfort and protection in every use.",
-      image: "/categories/diaper2.png",
-      link: "/shop/diapers",
-    },
-    {
-      id: 4,
-      name: "Strollers & Gear",
-      description:
-        "High-quality strollers and baby gear. Safe, durable, and designed for modern parents.",
-      image: "/categories/stroller.png",
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(1234);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-      link: "/shop/strollers",
-    },
-  ];
+  const handleToggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const handleTogglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleToggleLike = () => {
+    setIsLiked(!isLiked);
+    setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
+  };
 
   return (
     <section className="py-4 lg:py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-4 lg:px-6 max-w-7xl">
         {/* Section Header */}
+        <SectionHeading
+          title="We started zuvara with"
+          highlight="purpose."
+          description="Discover our curated selection of premium baby products designed to support every stage of your parenting journey."
+          align="center"
+        />
+
+        {/* Video Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-8"
+          className="mb-4 lg:mb-8"
         >
-          <h2 className="text-3xl lg:text-4xl font-semibold text-foreground font-poppins mb-4">
-            Explore our{" "}
-            <span className="text-[#8cd700] italic">Categories</span>
-          </h2>
-          <p className="text-md text-zinc-600 max-w-2xl">
-            Discover our curated selection of premium baby products designed to
-            support every stage of your parenting journey.
-          </p>
-        </motion.div>
-
-        {/* Categories Grid - 2x2 Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-          {categories.map((category, index) => (
-            <motion.div
-              key={category.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group rounded-xl overflow-hidden border border-transparent transition-all duration-300 hover:border-[#8cd700] bg-zinc-50"
+          {/* Video Container */}
+          <div className="relative w-full h-150 bg-linear-to-br from-foreground to-[#8cd700] rounded-lg overflow-hidden">
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
             >
-              {/* Image Container */}
-              <div className="relative h-64 md:h-72 lg:h-64 overflow-hidden bg-zinc-100">
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  fill
-                  className="object-cover hover:transition-all hover:duration-500"
+              <source src="/videos/zuvara-vdo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Video Label */}
+            <div className="absolute top-4 right-4 bg-black/60 text-white px-3 py-1 rounded text-xs font-medium backdrop-blur-md">
+              Zuvara Solutions.
+            </div>
+          </div>
+
+          {/* Video Controls Below - Icon + Text Style */}
+          <div className="flex items-center justify-center gap-4 mt-6">
+            {/* Like Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleToggleLike}
+              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full transition-all ${
+                isLiked
+                  ? " text-red-500 border border-zinc-400 "
+                  : "border border-zinc-400 text-zinc-800 "
+              }`}
+              aria-label="Like"
+            >
+              <Icon
+                icon={isLiked ? "mdi:heart" : "mdi:heart-outline"}
+                width="20"
+                height="20"
+              />
+              <span className="text-sm font-medium">{likeCount}</span>
+            </motion.button>
+            {/* Play/Pause Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleTogglePlayPause}
+              className="flex items-center justify-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-black/80 transition-all"
+              aria-label="Toggle Play/Pause"
+            >
+              {isPlaying ? (
+                <Icon icon="mage:pause-fill" width="20" height="20" />
+              ) : (
+                <Icon icon="mage:play-fill" width="20" height="20" />
+              )}
+              <span className="text-sm font-medium">
+                {isPlaying ? "Pause" : "Play"}
+              </span>
+            </motion.button>
+
+            {/* Sound Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleToggleMute}
+              className="flex items-center justify-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-black/80 transition-all"
+              aria-label="Toggle Volume"
+            >
+              {isMuted ? (
+                <Icon
+                  icon="teenyicons:sound-off-solid"
+                  width="20"
+                  height="20"
                 />
-              </div>
-
-              {/* Content Container */}
-              <div className="p-2 lg:p-4">
-                {/* Title */}
-                <h3 className="text-2xl lg:text-xl font-bold text-[#8cd700] font-montserrat mb-3">
-                  {category.name}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-zinc-600 mb-6 line-clamp-2">
-                  {category.description}
-                </p>
-
-                {/* Explore Button */}
-                <button
-                  type="submit"
-                  className="bg-foreground/10 border border-zinc-300 hover:bg-zinc-50 text-foreground hover:text-[#8cd700] font-semibold px-6 py-2 rounded-full transition-all text-sm flex items-center gap-2"
-                >
-                  View Products
-                  <ArrowRight size={16} />
-                </button>
-                {/* <Button content="Explore Category" link={category.link} /> */}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              ) : (
+                <Icon icon="teenyicons:sound-on-solid" width="20" height="20" />
+              )}
+              <span className="text-sm font-medium">
+                {isMuted ? "Unmute" : "Mute"}
+              </span>
+            </motion.button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
