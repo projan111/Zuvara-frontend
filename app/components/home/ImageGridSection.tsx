@@ -32,7 +32,7 @@ const ImageGridSection = () => {
             // width: {isSmallerDevice ? "100px" : "200px"},
           }}
         >
-          <div className="bg-white p-1 lg:p-3 shadow-xl">
+          <div className="bg-white p-1 lg:p-2 shadow-xl">
             <img
               src={item.image}
               alt={`Baby ${index + 1}`}

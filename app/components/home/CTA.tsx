@@ -19,20 +19,20 @@ const CTA = () => {
   };
 
   return (
-    <section className="py-4 lg:py-8">
-      <div className="container w-full">
-        <div className="bg-[#eeeeee] overflow-hidden">
+    <section className="lg:curvy-border bg-divider h-fit lg:h-[100vh] lg:py-8">
+      <div className="container w-full h-full flex items-center">
+        <div className="overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Content */}
             <div className="p-8 lg:py-24 lg:pl-36">
               <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">
                 Discover Amazing
               </p>
-              <h2 className="text-3xl lg:text-4xl font-semibold text-foreground mb-3 font-poppins">
+              <h2 className="text-3xl lg:text-4xl font-semibold text-foreground mb-3 font-poppins leading-[0.9] lg:leading-none">
                 Get notified about latest{" "}
                 <span className="text-[#8cd700] italic">offers & updates</span>
               </h2>
-              <p className="text-zinc-700 text-sm lg:text-base mb-6 leading-relaxed">
+              <p className="text-zinc-700 text-sm lg:text-base mb-4 lg:mb-6 leading-relaxed">
                 Be aware of all discounts and bargains! Don&apos;t miss your
                 benefits!
                 <span className="ml-1">😊</span>
@@ -45,7 +45,7 @@ const CTA = () => {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 border border-zinc-300 rounded-full text-sm focus:outline-none focus:border-zinc-600"
+                  className="w-full px-4 py-2 border border-foreground rounded-full text-sm focus:outline-none focus:border-zinc-600"
                   required
                 />
                 <button

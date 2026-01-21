@@ -148,7 +148,7 @@ const Product = () => {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-7xl">
+      <div className="container mt-8 lg;mt-0 mx-auto px-4 sm:px-6 lg:px-6 max-w-7xl">
         {/* Section Header */}
         {/* <div className="flex flex-col gap-2 justify-between items-center">
           <SectionHeading

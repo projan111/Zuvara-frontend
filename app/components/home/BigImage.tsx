@@ -53,7 +53,8 @@ const BigImage = () => {
   }, []);
 
   return (
-    <section className="curvy-border-mob lg:curvy-border h-[60vh] lg:h-[90vh] bg-[#cadaa9] flex items-center">
+    <section className="lg:curvy-border h-[35vh] lg:h-[90vh] bg-divider flex items-center">
+      {/* <section className="lg:curvy-border h-auto bg-[#cadaa9] flex items-center"> */}
       <div className="container w-full">
         <div ref={sectionRef} className="overflow-hidden">
           {/* <div className="grid grid-cols-2 md:grid-cols-2 gap-8 lg:gap-12 items-center"> */}
@@ -61,7 +62,7 @@ const BigImage = () => {
             {/* Left Side - Text Content */}
             <div
               ref={titleRef}
-              className="w-2/3 lg:w-1/2 pl-8 py-8 lg:py-24 flex flex-col items-start justify-center lg:pl-36"
+              className="w-2/3 lg:w-1/2 pl-8 lg:py-24 flex flex-col items-start justify-center lg:pl-36"
             >
               <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">
                 Premium Collection

@@ -38,7 +38,9 @@ const WhyChoose = () => {
   ];
 
   return (
-    <section className="curvy-border-mob lg:curvy-border flex items-center justify-center lg:-mt-32 h-[180vh] lg:h-[140vh] bg-[#cadaa9] border-t border-zinc-200">
+    <section className="lg:curvy-border flex items-center justify-center lg:-mt-32 h-auto py-8 lg:py-0 lg:h-[140vh] bg-divider border-t border-zinc-200">
+      {/* <section className="curvy-border flex items-center justify-center lg:-mt-32 h-[180vh] lg:h-[140vh] bg-[#cadaa9] border-t border-zinc-200"> */}
+      {/* <section className="flex items-center justify-center h-auto bg-[#cadaa9] border-t border-zinc-200"> */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-7xl">
         {/* Header */}
         <motion.div

@@ -81,7 +81,7 @@ export default function Navbar() {
     // { label: "Search", href: "#", icon: "iconamoon:search-light" },
     {
       label: "Shop",
-      href: "#",
+      href: "/shop",
       icon: "fluent:cart-20-filled",
       badge: 1,
     },
