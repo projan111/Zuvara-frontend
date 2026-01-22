@@ -4,11 +4,34 @@ Command: npx gltfjsx@6.5.3 zuvy-baby.glb -T
 Files: zuvy-baby.glb [1.32MB] > D:\Test Project\zuvara-frontend\public\models\zuvy-baby-transformed.glb [189.78KB] (86%)
 */
 
+import * as THREE from "three";
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { GLTF } from "three-stdlib";
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF("/models/zuvy-baby-transformed.glb");
+type GLTFResult = GLTF & {
+  nodes: {
+    eyebrow002: THREE.Mesh;
+    zuvera_body_v008001: THREE.Mesh;
+    diaper002: THREE.Mesh;
+    Object_2001: THREE.Mesh;
+    Object_3: THREE.Mesh;
+    Object_3001: THREE.Mesh;
+  };
+  materials: {
+    ["Material.003"]: THREE.MeshStandardMaterial;
+    ["Material.001"]: THREE.MeshStandardMaterial;
+    ["diaper-texture"]: THREE.MeshStandardMaterial;
+    ["Material.006"]: THREE.MeshStandardMaterial;
+    ["Material.007"]: THREE.MeshStandardMaterial;
+    BodyB_mat: THREE.MeshStandardMaterial;
+  };
+};
+
+export function Model(props: React.JSX.IntrinsicElements["group"]) {
+  const { nodes, materials } = useGLTF(
+    "/models/zuvy-baby-transformed.glb"
+  ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
