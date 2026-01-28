@@ -1,5 +1,6 @@
 import AboutProduct from "@/app/components/personalCare/AboutProduct";
 import HeroSection from "@/app/components/personalCare/HeroSection";
+import ProductSection from "@/app/components/personalCare/ProductSection";
 import StatsDivider from "@/app/components/personalCare/StatsDivider";
 import StatsDividerMob from "@/app/components/personalCare/StatsDividerMob";
 import WhyUsSection from "@/app/components/personalCare/WhyUsSection";
@@ -9,9 +10,10 @@ const page = () => {
   return (
     <div className="">
       <HeroSection />
-      {/* <StatsDivider /> */}
       {/* <StatsDividerMob /> */}
-      <WhyUsSection />
+      {/* <WhyUsSection /> */}
+      <StatsDivider />
+      <ProductSection />
       <AboutProduct />
     </div>
   );

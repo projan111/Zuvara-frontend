@@ -450,7 +450,7 @@ Choose the size that best matches your baby’s weight for a snug, comfortable f
     slug: "value-wet-wipes",
     rating: 4.6,
     reviews: 156,
-    image: "/images/diaper/diaper.png",
+    image: "/images/wipes/water-wipes.png",
     category: "Wipes",
     inStock: true,
     description: "Wipes that are skin friendly !!",

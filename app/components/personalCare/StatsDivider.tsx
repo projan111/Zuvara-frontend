@@ -23,7 +23,7 @@ const statsLists = [
 
 const StatsDivider = () => {
   return (
-    <section className="">
+    <section className="py-8 bg-personalCare/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-7xl">
         <div className="flex justify-center gap-4 w-full">
           {statsLists.map((list) => (

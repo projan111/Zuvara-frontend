@@ -1,67 +1,201 @@
 "use client";
 
-import Button from "../common-ui/Button";
-import StatsDivider from "./StatsDivider";
-import { useMediaQuery } from "react-responsive";
+import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import Button from "../common-ui/Button";
+// import StatsDivider from "../personalCare/StatsDivider";
+import { useMediaQuery } from "react-responsive";
+import { cn } from "@/lib/utils";
+
+const featureLists = [
+  { id: 1, title: "Ultra-soft, pillow-like comfort" },
+  { id: 2, title: "Breathable and skin-friendly" },
+  { id: 3, title: "Perfect fit for restful sleep" },
+  { id: 4, title: "Fast absorption" },
+  { id: 5, title: "Side-leak guards" },
+  { id: 6, title: "All-night dryness guarantee" },
+];
 
 const HeroSection = () => {
   const isSmallerDevice = useMediaQuery({ maxWidth: 1000 });
 
   return (
-    <main className=" bg-personalCare/10 h-[85vh] lg:min-h-screen relative">
-      <section className="px-4 sm:px-6 lg:px-6 mx-auto! max-w-7xl h-full pt-24 relative">
-        <div className="lg:w-1/2 mx-auto">
-          <div className="flex flex-col items-center text-center gap-4 lg:gap-8">
-            <h1 className="text-2xl md:text-3xl lg:text-5xl font-black">
-              Period care that lets you{" "}
-              <span className="text-personalCare">
-                move, rest, and live normally.
-              </span>
-            </h1>
-            {/* <h1>Made for Everyday Living</h1> */}
-            <p className="text-lg lg:text-xl">
-              Designed to support you—wherever the day takes you.
-            </p>
-            <Button
-              content="Product List"
-              link="/personalCareProduct"
-              for="personalCare"
-              buttonClassName="z-30"
-            />
-          </div>
+    <main className="relative bg-personalCare/5 min-h-[90vh] lg:min-h-screen w-full flex flex-col justify-between">
+      <section className="container mx-auto px-6 lg:px-12 max-w-7xl flex-1 flex flex-col lg:flex-row items-center justify-between py-12 lg:py-0 gap-12 lg:gap-0 relative z-10">
+        {/* Left Content: Text & CTA */}
+        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left z-20 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-white border border-pink-100 shadow-sm"
+          >
+            <span className="text-sm font-semibold text-personalCare uppercase tracking-wider">
+              100% Cotton Feel
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-7xl font-black text-zinc-900"
+          >
+            Ultimate Comfort <br />
+            <span className="text-personalCare">Zero Leakage.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg lg:text-xl text-zinc-600 font-medium max-w-lg leading-relaxed"
+          >
+            Experience our ultra-thin sanitary pads and period panties designed
+            for maximum absorption and breathable softness.
+          </motion.p>
+
+          {/* <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="pt-8 flex items-center gap-6"
+          >
+             <div className="flex flex-col">
+                <span className="font-bold text-2xl text-zinc-800">12h</span>
+                <span className="text-xs font-medium text-zinc-500 uppercase">Protection</span>
+             </div>
+             <div className="w-px h-10 bg-zinc-300"></div>
+             <div className="flex flex-col">
+                <span className="font-bold text-2xl text-zinc-800">100%</span>
+                <span className="text-xs font-medium text-zinc-500 uppercase">Rash Free</span>
+             </div>
+             <div className="w-px h-10 bg-zinc-300"></div>
+             <div className="flex flex-col">
+                 <span className="font-bold text-2xl text-zinc-800">Eco</span>
+                 <span className="text-xs font-medium text-zinc-500 uppercase">Friendly</span>
+             </div>
+          </motion.div> */}
         </div>
 
-        <motion.img
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 15,
-            delay: 0.2,
-          }}
-          style={{ originX: 1, originY: 1 }}
-          src="/images/personalCare/period-panties-pack.png"
-          alt="Period Panties pack"
-          className="absolute bottom-[5%] lg:bottom-[10%] right-4 lg:right-0 w-40 lg:w-80 z-10"
-        />
-        <motion.img
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 15,
-            delay: 0.4,
-          }}
-          style={{ originX: 1, originY: 1 }}
-          src="/images/personalCare/sanitary-pads-pack.png"
-          alt="Sanitary Pads pack"
-          className="absolute bottom-[5%] lg:bottom-[10%] right-[20%] w-35 lg;w-70 z-20"
-        />
+        {/* Right Content: Product Composition */}
+        <div className="w-full lg:w-1/2 relative flex justify-center lg:justify-end items-center h-[50vh] lg:h-auto">
+          <div className="w-full relative min-h-[500px] lg:min-h-[700px] flex flex-col items-center justify-center isolate gap-10 lg:gap-0">
+            {/* Mobile Layout - Top Triangle (Features 1, 2, 3) */}
+            <div className="lg:hidden w-full space-y-4 z-20">
+              {/* Point 1: Top Center */}
+              <div className="flex justify-center">
+                <MobileFeatureCard
+                  feature={featureLists[0]}
+                  className="w-[85%]"
+                />
+              </div>
+              {/* Point 2 & 3: Horizontal line below 1 */}
+              <div className="flex justify-between gap-3">
+                <MobileFeatureCard
+                  feature={featureLists[1]}
+                  className="flex-1"
+                />
+                <MobileFeatureCard
+                  feature={featureLists[2]}
+                  className="flex-1"
+                />
+              </div>
+            </div>
+
+            {/* Desktop Circular Features - Lines Layer (Behind Image) */}
+            <div className="absolute inset-0 hidden lg:block pointer-events-none -z-10">
+              {featureLists.map((feature, index) => {
+                const angle = index * 60 - 60;
+                const radius = 280;
+                const innerRadius = 180;
+                return (
+                  <div
+                    key={`line-${feature.id}`}
+                    className="absolute top-1/2 left-1/2"
+                  >
+                    <div
+                      className="absolute top-0 left-0 h-px bg-gradient-to-r from-personalCare/40 to-transparent origin-left hidden xl:block"
+                      style={{
+                        width: `${radius - innerRadius - 20}px`,
+                        transform: `rotate(${angle}deg) translateX(${innerRadius}px)`,
+                      }}
+                    >
+                      <div className="absolute right-0 -top-1 size-2 bg-personalCare rounded-full border-2 border-white shadow-sm" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Central Image Container */}
+            <div className="relative z-10 size-64 md:size-80 lg:size-96 flex items-center justify-center">
+              {/* Opaque mask to truly hide lines behind everything */}
+              <div className="absolute inset-0 bg-white rounded-full z-0" />
+
+              <div className="absolute inset-4 bg-personalCare/20 rounded-full blur-2xl z-10" />
+              <div className="absolute inset-0 bg-personalCare/5 rounded-full border border-personalCare/10 z-10" />
+              <img
+                src="/images/personalCare/sleeping-lady.png"
+                alt="Sleeping Lady"
+                className="relative z-20 w-full h-full object-contain drop-shadow-2xl float-animation"
+              />
+            </div>
+
+            {/* Mobile Layout - Bottom Inverted Triangle (Features 4, 5, 6) */}
+            <div className="lg:hidden w-full space-y-4 z-20">
+              {/* Point 4 & 5: Horizontal line below image */}
+              <div className="flex justify-between gap-3">
+                <MobileFeatureCard
+                  feature={featureLists[3]}
+                  className="flex-1"
+                />
+                <MobileFeatureCard
+                  feature={featureLists[4]}
+                  className="flex-1"
+                />
+              </div>
+              {/* Point 6: Bottom Center */}
+              <div className="flex justify-center">
+                <MobileFeatureCard
+                  feature={featureLists[5]}
+                  className="w-[85%]"
+                />
+              </div>
+            </div>
+
+            {/* Desktop Circular Features - Cards Layer (In Front of Image) */}
+            <div className="absolute inset-0 hidden lg:block pointer-events-none z-20">
+              {featureLists.map((feature, index) => {
+                const angle = index * 60 - 60;
+                const radius = 280;
+                return (
+                  <div
+                    key={`card-${feature.id}`}
+                    className="absolute top-1/2 left-1/2"
+                  >
+                    <div
+                      className="absolute pointer-events-auto group -translate-x-1/2 -translate-y-1/2"
+                      style={{
+                        transform: `rotate(${angle}deg) translate(${radius}px) rotate(${-angle}deg)`,
+                      }}
+                    >
+                      <div className="bg-white/70 backdrop-blur-md border border-personalCare/20 p-4 rounded-2xl shadow-lg hover:shadow-personalCare/20 transition-all duration-500 hover:-translate-y-1 w-56 text-center">
+                        <p className="text-sm font-semibold text-gray-800 whitespace-nowrap">
+                          {feature.title}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </section>
 
+      {/* Bottom Stats Part */}
       {/* {!isSmallerDevice && (
         <div className="absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 w-full z-40">
           <StatsDivider />
@@ -72,3 +206,23 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+const MobileFeatureCard = ({
+  feature,
+  className,
+}: {
+  feature: any;
+  className?: string;
+}) => (
+  <div
+    className={cn(
+      "bg-white/90 backdrop-blur-md border border-personalCare/20 p-4 rounded-2xl shadow-sm flex items-center gap-3 justify-center text-center",
+      className,
+    )}
+  >
+    <div className="size-1.5 bg-personalCare rounded-full shrink-0" />
+    <p className="text-xs font-bold text-gray-800 leading-tight">
+      {feature.title}
+    </p>
+  </div>
+);

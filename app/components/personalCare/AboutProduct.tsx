@@ -3,6 +3,8 @@ import SectionHeading from "../common-ui/SectionHeading";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ProductCard from "../common-ui/ProductCard";
+import { personalCareProducts } from "@/constants/personalCareProduct";
 
 const products = [
   {
@@ -50,75 +52,14 @@ const AboutProduct = () => {
             Essential Sanitary Solutions
           </h2>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8">
-          {products.map((product, index) => (
-            <Link
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-2 mt-8">
+          {personalCareProducts.map((product, index) => (
+            <ProductCard
               key={product.id}
-              href={`/personalCareProduct/${product.slug}`}
-              className={cn(
-                "group relative flex flex-col rounded-[2.5rem] overflow-hidden border p-2 transition-all duration-500 hover:shadow-2xl hover:shadow-personalCare/10",
-                product.borderColor,
-                index === 1 ? "lg:translate-y-12" : "", // Staggered look
-              )}
-            >
-              {/* Image Container */}
-              <div
-                className={cn(
-                  "relative aspect-4/3 rounded-4xl overflow-hidden flex items-center justify-center p-8 transition-transform duration-700",
-                  product.bgColor,
-                )}
-              >
-                {/* Product Main Image */}
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="relative z-10 w-full h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"
-                />
-
-                {/* Pack Image - Floating overlay */}
-                <div className="absolute bottom-4 right-4 w-1/3 aspect-square z-20 transition-all duration-700 group-hover:translate-x-2 group-hover:-translate-y-2">
-                  <img
-                    src={product.packImage}
-                    alt={`${product.name} pack`}
-                    className="w-full h-full object-contain drop-shadow-xl rotate-6"
-                  />
-                </div>
-              </div>
-
-              {/* Content Container */}
-              <div className="p-8 flex flex-col gap-4">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-1">
-                      {product.name}
-                    </h3>
-                    <p
-                      className={cn("font-medium italic", product.accentColor)}
-                    >
-                      {product.tagline}
-                    </p>
-                  </div>
-                  <div
-                    className={cn(
-                      "flex items-center justify-center size-12 rounded-full border transition-all duration-500 group-hover:bg-personalCare group-hover:text-white group-hover:border-personalCare",
-                      product.borderColor,
-                    )}
-                  >
-                    <ArrowUpRight className="size-6 transition-transform duration-500 group-hover:rotate-45" />
-                  </div>
-                </div>
-
-                <p className="text-gray-600 leading-relaxed max-w-lg">
-                  {product.description}
-                </p>
-
-                <div className="mt-4 flex items-center gap-2 font-bold text-sm tracking-widest uppercase">
-                  <span>Explore Product</span>
-                  <div className="h-px flex-1 bg-gray-100 group-hover:bg-personalCare/30 transition-colors" />
-                </div>
-              </div>
-            </Link>
+              product={product}
+              index={index}
+              activeTab="personal"
+            />
           ))}
         </div>
       </div>
@@ -127,3 +68,72 @@ const AboutProduct = () => {
 };
 
 export default AboutProduct;
+// <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8">
+//   {products.map((product, index) => (
+//     <Link
+//       key={product.id}
+//       href={`/personalCareProduct/${product.slug}`}
+//       className={cn(
+//         "group relative flex flex-col rounded-[2.5rem] overflow-hidden border p-2 transition-all duration-500 hover:shadow-2xl hover:shadow-personalCare/10",
+//         product.borderColor,
+//       )}
+//     >
+//       {/* Image Container */}
+//       <div
+//         className={cn(
+//           "relative aspect-4/3 rounded-4xl overflow-hidden flex items-center justify-center p-8 transition-transform duration-700",
+//           product.bgColor,
+//         )}
+//       >
+//         {/* Product Main Image */}
+//         <img
+//           src={product.image}
+//           alt={product.name}
+//           className="relative z-10 w-full h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"
+//         />
+
+//         {/* Pack Image - Floating overlay */}
+//         <div className="absolute bottom-4 right-4 w-1/3 aspect-square z-20 transition-all duration-700 group-hover:translate-x-2 group-hover:-translate-y-2">
+//           <img
+//             src={product.packImage}
+//             alt={`${product.name} pack`}
+//             className="w-full h-full object-contain drop-shadow-xl rotate-6"
+//           />
+//         </div>
+//       </div>
+
+//       {/* Content Container */}
+//       <div className="p-8 flex flex-col gap-4">
+//         <div className="flex justify-between items-start">
+//           <div>
+//             <h3 className="text-3xl font-bold text-gray-900 mb-1">
+//               {product.name}
+//             </h3>
+//             <p
+//               className={cn("font-medium italic", product.accentColor)}
+//             >
+//               {product.tagline}
+//             </p>
+//           </div>
+//           <div
+//             className={cn(
+//               "flex items-center justify-center size-12 rounded-full border transition-all duration-500 group-hover:bg-personalCare group-hover:text-white group-hover:border-personalCare",
+//               product.borderColor,
+//             )}
+//           >
+//             <ArrowUpRight className="size-6 transition-transform duration-500 group-hover:rotate-45" />
+//           </div>
+//         </div>
+
+//         <p className="text-gray-600 leading-relaxed max-w-lg">
+//           {product.description}
+//         </p>
+
+//         <div className="mt-4 flex items-center gap-2 font-bold text-sm tracking-widest uppercase">
+//           <span>Explore Product</span>
+//           <div className="h-px flex-1 bg-gray-100 group-hover:bg-personalCare/30 transition-colors" />
+//         </div>
+//       </div>
+//     </Link>
+//   ))}
+// </div>

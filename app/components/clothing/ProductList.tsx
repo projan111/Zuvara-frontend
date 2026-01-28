@@ -19,7 +19,7 @@ const ProductList = () => {
       : (strollerRockerProducts as unknown as StrollerProduct[]);
 
   return (
-    <section className="container min-h-screen mx-auto py-8 px-4 sm:px-6 lg:px-6 max-w-7xl">
+    <section className="container lg:min-h-screen mx-auto py-8 px-4 sm:px-6 lg:px-6 max-w-7xl">
       {/* Tabs */}
       <div className="flex gap-4 mb-8 pt-4 justify-center">
         <button

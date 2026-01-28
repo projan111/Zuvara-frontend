@@ -183,10 +183,10 @@ const StrollerProductDetailPage = () => {
                   </div>
                 )}
 
-              {/* Variant Selection (Desktop) */}
+              {/* Variant Selection */}
               {product.variants && product.variants.length > 0 && (
                 <div className="mb-10">
-                  <h3 className="text-xs font-black text-zinc-400 uppercase tracking-[0.2em] mb-4">
+                  <h3 className="text-xs font-black text-zinc-900 uppercase tracking-[0.2em] mb-4">
                     {product.variants.some((v) => v.color) && "Select Variant"}
                   </h3>
                   <div className="flex flex-wrap gap-3">

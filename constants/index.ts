@@ -35,14 +35,14 @@ const contactLists = [
     title: "Head Office",
     desc: "4F, Mahabir Plaza, Hospital Chowk Biratnagar, Nepal 5661",
     icon: "mdi:location",
-    link: "https://www.google.com/maps/place/WebX+Nepal+Pvt.+Ltd./@27.7191762,85.3216617,17z/data=!3m1!4b1!4m6!3m5!1s0x39eb19db1ac7cfc1:0x3f3557a1377b8d05!8m2!3d27.7191762!4d85.3242366!16s%2Fg%2F11vzyb5zkx?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D",
+    link: "https://www.google.com/maps?ll=26.458056,87.285365&z=16&t=h&hl=en&gl=NP&mapclient=embed&q=26%C2%B027%2729.0%22N+87%C2%B017%2707.3%22E+26.458056,+87.285361@26.4580556,87.2853611",
   },
   {
     id: 2,
     title: "Corporate Office",
     desc: "2f, Bishal Nagar Marg, Hadigaun Kathmandu-5, Nepal",
     icon: "mdi:location",
-    link: "https://www.google.com/maps/place/WebX+Nepal+Pvt.+Ltd./@27.7191762,85.3216617,17z/data=!3m1!4b1!4m6!3m5!1s0x39eb19db1ac7cfc1:0x3f3557a1377b8d05!8m2!3d27.7191762!4d85.3242366!16s%2Fg%2F11vzyb5zkx?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D",
+    link: "https://www.google.com/maps?ll=27.718311,85.334342&z=19&t=h&hl=en&gl=NP&mapclient=embed&cid=7085246186167672826",
   },
   {
     id: 3,
@@ -51,13 +51,6 @@ const contactLists = [
     icon: "solar:phone-bold",
     link: "https://wa.me/9703464314",
   },
-  // {
-  //   id: 3,
-  //   title: "Website",
-  //   desc: "WebX Nepal Website",
-  //   icon: "geo:ui-earth-west",
-  //   link: "https://webxnepal.com/",
-  // },
 ];
 
 export { socialLinks, contactLists };

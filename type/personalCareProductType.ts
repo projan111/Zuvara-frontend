@@ -24,6 +24,7 @@ export interface Product {
   name: string;
   rating: number;
   reviews: number;
+  productImage: string;
   image: string;
   category: string;
   slug: string;
@@ -32,6 +33,7 @@ export interface Product {
   description?: string;
   subDesc1?: string;
   highlights?: string[];
+  features?: string[];
   reviewsData?: Review[];
   faqs?: FAQ[];
 }

@@ -29,7 +29,10 @@ const WhyUsSection = () => {
           <div className="lg:hidden w-full space-y-4 z-20">
             {/* Point 1: Top Center */}
             <div className="flex justify-center">
-              <MobileFeatureCard feature={featureLists[0]} className="w-[85%]" />
+              <MobileFeatureCard
+                feature={featureLists[0]}
+                className="w-[85%]"
+              />
             </div>
             {/* Point 2 & 3: Horizontal line below 1 */}
             <div className="flex justify-between gap-3">
@@ -42,7 +45,7 @@ const WhyUsSection = () => {
           <div className="absolute inset-0 hidden lg:block pointer-events-none -z-10">
             {featureLists.map((feature, index) => {
               const angle = index * 60 - 60;
-              const radius = 380;
+              const radius = 340;
               const innerRadius = 180;
               return (
                 <div
@@ -86,7 +89,10 @@ const WhyUsSection = () => {
             </div>
             {/* Point 6: Bottom Center */}
             <div className="flex justify-center">
-              <MobileFeatureCard feature={featureLists[5]} className="w-[85%]" />
+              <MobileFeatureCard
+                feature={featureLists[5]}
+                className="w-[85%]"
+              />
             </div>
           </div>
 
@@ -94,7 +100,7 @@ const WhyUsSection = () => {
           <div className="absolute inset-0 hidden lg:block pointer-events-none z-20">
             {featureLists.map((feature, index) => {
               const angle = index * 60 - 60;
-              const radius = 340;
+              const radius = 320;
               return (
                 <div
                   key={`card-${feature.id}`}
@@ -107,7 +113,7 @@ const WhyUsSection = () => {
                     }}
                   >
                     <div className="bg-white/70 backdrop-blur-md border border-personalCare/20 p-4 rounded-2xl shadow-lg hover:shadow-personalCare/20 transition-all duration-500 hover:-translate-y-1 w-56 text-center">
-                      <p className="text-sm font-semibold text-gray-800">
+                      <p className="text-sm font-semibold text-gray-800 whitespace-nowrap">
                         {feature.title}
                       </p>
                     </div>
@@ -143,4 +149,3 @@ const MobileFeatureCard = ({
     </p>
   </div>
 );
-

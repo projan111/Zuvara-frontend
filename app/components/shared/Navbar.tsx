@@ -310,8 +310,8 @@ export default function Navbar() {
                         className={`text-lg font-medium transition flex items-center justify-between p-2 rounded-lg ${
                           isActive
                             ? isPersonalSection
-                              ? "bg-personalCare/50 text-personalCare"
-                              : "bg-secondary/50 text-secondary"
+                              ? "bg-personalCare/50 text-white!"
+                              : "bg-babyCare"
                             : "text-zinc-800 hover:bg-zinc-50"
                         }`}
                       >
@@ -332,7 +332,7 @@ export default function Navbar() {
                       onClick={() => setIsMenuOpen(false)}
                       className={cn(
                         "group flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 border",
-                        isBabySection
+                        isPersonalSection
                           ? "bg-personalCare/5 border-personalCare/10 hover:bg-personalCare/10"
                           : "bg-babyCare/10 border-babyCare/20 hover:bg-babyCare/20",
                       )}
@@ -340,7 +340,7 @@ export default function Navbar() {
                       <div
                         className={cn(
                           "size-10 rounded-xl flex items-center justify-center text-white transition-transform group-hover:scale-110",
-                          isBabySection ? "bg-personalCare" : "bg-babyCare",
+                          isPersonalSection ? "bg-personalCare" : "bg-babyCare",
                         )}
                       >
                         <Icon
@@ -362,7 +362,7 @@ export default function Navbar() {
                         </p>
                       </div>
                       <Icon
-                        icon="material-symbols:chevron-right-rounded"
+                        icon="icon-park-outline:switch"
                         className="text-zinc-400"
                       />
                     </Link>
@@ -408,13 +408,7 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`relative flex flex-col items-center justify-center gap-1 rounded-full hover:bg-zinc-100 transition px-6 py-2 ${
-                  finalIsActive
-                    ? isPersonalSection
-                      ? "bg-personalCare/20 ring ring-personalCare"
-                      : "bg-secondary/20 ring ring-secondary"
-                    : ""
-                }`}
+                className={`relative flex flex-col items-center justify-center gap-1 rounded-full hover:bg-zinc-100 transition px-6 py-2`}
               >
                 <Icon
                   icon={item.icon}
@@ -424,7 +418,7 @@ export default function Navbar() {
                     finalIsActive
                       ? isPersonalSection
                         ? "text-personalCare"
-                        : "text-secondary"
+                        : "text-babyCare"
                       : ""
                   }`}
                 />
@@ -433,7 +427,7 @@ export default function Navbar() {
                     finalIsActive
                       ? isPersonalSection
                         ? "text-personalCare"
-                        : "text-secondary"
+                        : "text-babyCare"
                       : ""
                   }`}
                 >

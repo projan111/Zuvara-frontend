@@ -90,13 +90,13 @@ const HeroSection = () => {
           <img
             src="/images/baby/baby-in-cotton-cloud.png"
             alt="Baby in cotton cloud"
-            className="baby-image w-auto h-auto max-h-[60vh] lg:max-h-[80vh] object-contain drop-shadow-xl"
+            className="baby-image w-auto h-auto max-h-[50vh] lg:max-h-[80vh] object-contain drop-shadow-xl z-30"
           />
 
           <img
-            src="/images/products/diaper-on-cloud.png"
+            src="/images/diaper/diaper-on-cloud.png"
             alt="diaper on the cloud"
-            className="diaper-image absolute top-[10%] left-0 drop-shadow-xl w-48"
+            className="diaper-image absolute top-[0%] lg:top-[10%] left-0 drop-shadow-xl w-40 lg:w-48 z-0"
           />
         </div>
       </div>

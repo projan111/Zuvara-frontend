@@ -8,7 +8,7 @@ import SectionHeading from "../common-ui/SectionHeading";
 
 const ProductList = () => {
   return (
-    <section className="container min-h-screen mx-auto py-8 px-4 sm:px-6 lg:px-6 max-w-7xl">
+    <section className="container lg:min-h-screen mx-auto py-8 px-4 sm:px-6 lg:px-6 max-w-7xl">
       <SectionHeading
         title="Our Premium"
         highlight="Diper Collection"
