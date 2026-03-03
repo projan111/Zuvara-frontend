@@ -7,12 +7,28 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 // Types remain the same as your structure
-import type { Product as BabyProduct, Variant as BabyVariant } from "@/type/babyCareProductType";
-import type { Product as ClothingProduct, Variant as ClothingVariant } from "@/type/babyClothesType";
-import type { Product as StrollerProduct, Variant as StrollerVariant } from "@/type/strollerRockerProductType";
-import type { Product as PersonalProduct, Variant as PersonalVariant } from "@/type/personalCareProductType";
+import type {
+  Product as BabyProduct,
+  Variant as BabyVariant,
+} from "@/type/babyCareProductType";
+import type {
+  Product as ClothingProduct,
+  Variant as ClothingVariant,
+} from "@/type/babyClothesType";
+import type {
+  Product as StrollerProduct,
+  Variant as StrollerVariant,
+} from "@/type/strollerRockerProductType";
+import type {
+  Product as PersonalProduct,
+  Variant as PersonalVariant,
+} from "@/type/personalCareProductType";
 
-type ProductType = BabyProduct | ClothingProduct | StrollerProduct | PersonalProduct;
+type ProductType =
+  | BabyProduct
+  | ClothingProduct
+  | StrollerProduct
+  | PersonalProduct;
 
 interface ProductCardProps {
   product: ProductType;
@@ -22,9 +38,14 @@ interface ProductCardProps {
   style?: React.CSSProperties;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, index, activeTab, className }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  index,
+  activeTab,
+  className,
+}) => {
   const router = useRouter();
-  
+
   const routeMap: Record<typeof activeTab, string> = {
     baby: "babyCareProduct",
     personal: "personalCareProduct",
@@ -38,7 +59,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index, activeTab, cl
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       viewport={{ once: true }}
       className={`h-full w-full ${className}`}
     >
@@ -46,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index, activeTab, cl
         onClick={() => router.push(`/${routeMap[activeTab]}/${product.slug}`)}
         whileHover={{ y: -8, scale: 1.02 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="group relative flex flex-col h-full bg-white border border-zinc-100 rounded-[32px] p-8 cursor-pointer overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-emerald-900/10 transition-shadow duration-500"
+        className="group relative flex flex-col h-80 bg-white border border-zinc-100 rounded-4xl p-8 cursor-pointer overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-emerald-900/10 transition-shadow duration-500"
       >
         {/* Label */}
         <div className="z-10">

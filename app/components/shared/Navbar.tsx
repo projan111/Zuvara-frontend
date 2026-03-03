@@ -261,9 +261,9 @@ export default function Navbar() {
 
   const menuItems = [
     { label: "Home", href: homeHref },
-    { label: "Baby Care", href: "/babyCareProduct" },
+    { label: "Baby Products", href: "/babyCareProduct" },
     { label: "Personal Care", href: "/personalCareProduct" },
-    { label: "Baby Gear", href: "/clothing" },
+    // { label: "Baby Gear", href: "/clothing" },
     { label: "Blogs", href: "/blogs" },
     { label: "Contact Us", href: "/contact" },
   ];

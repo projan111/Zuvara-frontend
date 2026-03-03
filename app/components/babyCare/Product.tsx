@@ -10,7 +10,7 @@ import { strollerRockerProducts } from "@/constants/strollerRockerProduct";
 
 const Product = () => {
   const [activeTab, setActiveTab] = useState<"baby" | "clothing" | "stroller">(
-    "baby"
+    "baby",
   );
 
   const products =
@@ -21,7 +21,7 @@ const Product = () => {
         : strollerRockerProducts;
 
   const tabs = [
-    { id: "baby", label: "Baby Care", icon: "/icons/l.png" },
+    { id: "baby", label: "Baby Products", icon: "/icons/l.png" },
     { id: "clothing", label: "Clothing", icon: "/icons/clothes.png" },
     {
       id: "stroller",
@@ -33,59 +33,19 @@ const Product = () => {
   return (
     <>
       {/* ================= HERO SECTION ================= */}
-      <section className="h-auto md:h-[60vh] bg-babyCare flex flex-col lg:flex-row items-center justify-between relative px-4 lg:px-0  lg:pt-0">
-
-        {/* Left Content */}
-        <div className="w-full lg:w-2/3 mx-auto px-4 lg:pl-36 py-12 lg:py-24 flex flex-col items-start justify-end relative z-10">
-
-          <p className="text-xs font-semibold text-zinc-600 uppercase tracking-wider mb-3">
-            Premium Collection
-          </p>
-
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#45685e] mb-3 leading-tight lg:leading-none font-poppins">
-            Discover our complete range of products
-          </h2>
-
-          <p className="hidden md:block text-zinc-600 text-sm lg:text-base leading-relaxed max-w-md">
-            Quality baby products designed for comfort and safety.
-          </p>
-        </div>
-
-        {/* Right Image */}
-        <div className="w-full lg:w-1/3 relative h-64 lg:h-full min-h-[280px] flex justify-center items-end z-20">
-          <Image
-            src="/images/baby/baby-with-product.png"
-            alt="Baby with product"
-            fill
-            className="object-contain object-center"
-            priority
-          />
-        </div>
-
-        {/* Background Brand Text */}
-        <div className="hidden lg:block absolute right-0 -top-32 z-0 pointer-events-none text-[#45685e] font-extrabold">
-          <h2 className="text-[140px] xl:text-[180px] uppercase leading-none opacity-60">
-            zuvara
-          </h2>
-        </div>
-
-      </section>
 
       {/* ================= PRODUCT SECTION ================= */}
-      <section className="relative py-8 lg:py-12">
-
+      <section className="relative py-8 lg:py-12 ">
         <div className="container mx-auto px-4 sm:px-6 lg:px-6 w-full lg:w-[90%]">
-
           {/* Tabs */}
           <div className="flex gap-3 py-4 lg:justify-center overflow-x-auto whitespace-nowrap">
-
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 lg:px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 shrink-0 ${
                   activeTab === tab.id
-                    ? "bg-babyCare text-zinc-600 shadow-lg"
+                    ? "bg-babyCare text-foreground shadow-lg"
                     : "bg-zinc-100 text-foreground hover:bg-zinc-200"
                 }`}
               >
@@ -95,7 +55,7 @@ const Product = () => {
                     alt={tab.label}
                     fill
                     className={`object-contain transition-all duration-300 ${
-                      activeTab === tab.id ? "brightness-0 invert" : ""
+                      activeTab === tab.id ? "text-foreground" : ""
                     }`}
                   />
                 </div>
@@ -130,7 +90,6 @@ const Product = () => {
               />
             ))}
           </motion.div>
-
         </div>
       </section>
     </>

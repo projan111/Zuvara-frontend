@@ -34,7 +34,7 @@ const SectionHeading = ({
       className={`${alignClasses} mb-4 lg:space-y-2 ${className}`}
     >
       <h2
-        className={`text-2xl lg:text-4xl font-semibold text-foreground font-poppins ${titleClassName}`}
+        className={`text-2xl lg:text-4xl font-bold text-foreground font-poppins ${titleClassName}`}
       >
         {title}{" "}
         {highlight && (

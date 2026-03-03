@@ -38,16 +38,16 @@ const VideoSection = () => {
   };
 
   return (
-    <section className="py-4 lg:py-8 md:mt-24">
-      <div className="container mx-auto px-4 sm:px-4 lg:px-6 w[90%]">
+    <section className="">
+      <div className=" mx-auto w-full">
         {/* Section Header */}
-        <SectionHeading
+        {/* <SectionHeading
           title="We started zuvara with"
           highlight="purpose."
           description="Because parenting is hard enough and diapers should be easy."
           align={isSmallerDevice ? "left" : "center"}
           descClassName="text-left lg:text-center"
-        />
+        /> */}
 
         {/* Video Section */}
         <motion.div
@@ -55,10 +55,10 @@ const VideoSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-4 lg:mb-8"
+          className="mb-4 lg:mb-8 relative"
         >
           {/* Video Container */}
-          <div className="relative w-full h-[30vh] md:h-[50vh] lg:h-160 bg-linear-to-br from-foreground to-[#8cd700] rounded-2xl overflow-hidden">
+          <div className="relative w-full h-[30vh] md:h-[50vh] lg:h-screen bg-linear-to-br from-foreground to-[#8cd700] overflow-hidden">
             <video
               ref={videoRef}
               autoPlay
@@ -78,14 +78,14 @@ const VideoSection = () => {
           </div>
 
           {/* Video Controls Below - Icon + Text Style */}
-          <div className="flex items-center justify-between gap-4 mt-3 lg:mt-6">
-            <div className="flex items-center gap-2 lg:gap-4">
+          <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-4 py-8 bg-linear-to-t from-white to-transparent px-4">
+            <div className="flex items-center justify-center gap-2 lg:gap-4 w-4xl mx-auto">
               {/* Play/Pause Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleTogglePlayPause}
-                className="flex items-center justify-center gap-2 bg-black text-white px-4 py-2 lg:px-6 lg:py-4 rounded-full hover:bg-black/80 transition-all"
+                className="flex items-center justify-center gap-2 bg-babyCare text-foreground px-4 py-2 lg:px-6 lg:py-4 rounded-full hover:bg-black/80 transition-all"
                 aria-label="Toggle Play/Pause"
               >
                 {isPlaying ? (
@@ -131,26 +131,26 @@ const VideoSection = () => {
                   {isMuted ? "Unmute" : "Mute"}
                 </span>
               </motion.button>
+              {/* Like Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleToggleLike}
+                className={`flex items-center justify-center gap-2 px-4 py-2 lg:px-6 lg:py-4 rounded-full transition-all ${
+                  isLiked
+                    ? " text-red-500 ring ring-red-400  backdrop-blur-md"
+                    : "ring ring-zinc-400 text-zinc-800 bg-babyCare/50 backdrop-blur-md"
+                }`}
+                aria-label="Like"
+              >
+                <Icon
+                  icon={isLiked ? "mdi:heart" : "mdi:heart-outline"}
+                  width="20"
+                  height="20"
+                />
+                <span className="text-sm font-medium">{likeCount}</span>
+              </motion.button>
             </div>
-            {/* Like Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleToggleLike}
-              className={`flex items-center justify-center gap-2 px-4 py-2 lg:px-6 lg:py-4 rounded-full transition-all ${
-                isLiked
-                  ? " text-red-500 ring ring-red-400 "
-                  : "ring ring-zinc-400 text-zinc-800 "
-              }`}
-              aria-label="Like"
-            >
-              <Icon
-                icon={isLiked ? "mdi:heart" : "mdi:heart-outline"}
-                width="20"
-                height="20"
-              />
-              <span className="text-sm font-medium">{likeCount}</span>
-            </motion.button>
           </div>
         </motion.div>
       </div>

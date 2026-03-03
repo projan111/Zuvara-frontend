@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <main className="">
       <HeroSection />
+      <VideoSection />
       <WhyChoose />
       <Product />
-      <VideoSection />
       <Testimonial />
       <Blog />
       <CTA />

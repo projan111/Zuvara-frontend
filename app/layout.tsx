@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
 };
 
-import CrawlingBaby from "./components/shared/CrawlingBaby";
+// import CrawlingBaby from "./components/shared/CrawlingBaby";
 import { SectionProvider } from "./providers/SectionProvider";
 
 export default function RootLayout({

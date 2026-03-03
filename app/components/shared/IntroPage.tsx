@@ -86,9 +86,7 @@ export default function IntroPage() {
 
       {/* Header Section */}
       <div className="text-center mb-6 lg:mb-12 space-y-3 z-10">
-        <span className="font-black uppercase tracking-wider lg:tracking-[0.5em]">
-          Welcome to Zuvara
-        </span>
+        <span className="font-bold text-green-100 ">Welcome to Zuvara</span>
         <h1 className="text-2xl md:text-3xl font-black text-foreground uppercase tracking-tight">
           Choose your destination
         </h1>
@@ -102,7 +100,7 @@ export default function IntroPage() {
             key={section.id}
             href={section.href}
             className="w-full lg:w-100 group relative"
-            onMouseEnter={() => setHoveredSection(section.id as any )}
+            onMouseEnter={() => setHoveredSection(section.id as any)}
             onMouseLeave={() => setHoveredSection(null)}
           >
             <motion.div
@@ -155,7 +153,7 @@ export default function IntroPage() {
                       className={`transition-colors duration-300 ${hoveredSection === section.id ? "text-white" : "text-zinc-600"}`}
                     />
                     <span
-                      className={`text-[8px] font-black uppercase tracking-[0.2em] transition-colors duration-300 ${
+                      className={`text-[8px] font-black uppercase tracking-wider transition-colors duration-300 ${
                         hoveredSection === section.id
                           ? "text-white/80"
                           : "text-zinc-500"
@@ -170,7 +168,7 @@ export default function IntroPage() {
                   className={`text-3xl font-black leading-none transition-colors duration-300 ${
                     hoveredSection === section.id
                       ? "text-white"
-                      : "text-zinc-900"
+                      : "text-foreground"
                   }`}
                 >
                   {isSmallerDevice
@@ -215,7 +213,7 @@ export default function IntroPage() {
                     <Icon icon="solar:arrow-right-up-linear" width="20" />
                   </div>
                   <span
-                    className={`font-black text-[10px] uppercase tracking-widest transition-colors duration-300 ${
+                    className={`font-black text-[10px] uppercase tracking-wide transition-colors duration-300 ${
                       hoveredSection === section.id
                         ? "text-white"
                         : "text-zinc-900"

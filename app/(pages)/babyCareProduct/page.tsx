@@ -6,6 +6,7 @@ import DesktopHero from "@/app/components/babyCareProduct/HeroSection";
 import DesktopProductList from "@/app/components/babyCareProduct/ProductList";
 import MobileHero from "@/app/components/babyCareProductMobile/HeroSection";
 import MobileProductList from "@/app/components/babyCareProductMobile/ProductList";
+import Product from "@/app/components/babyCare/Product";
 
 const BabyCareProductPage = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -29,7 +30,7 @@ const BabyCareProductPage = () => {
       ) : (
         <>
           <DesktopHero />
-          <DesktopProductList />
+          <Product />
         </>
       )}
     </div>

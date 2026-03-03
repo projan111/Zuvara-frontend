@@ -17,8 +17,8 @@ export const Navbar = () => {
   const navItems: NavItem[] = [
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },
-    { label: "Baby Care", path: "/babyCareProduct" },
-    { label: "Baby Gear", path: "/clothing" },
+    { label: "Baby Products", path: "/babyCareProduct" },
+    // { label: "Baby Gear", path: "/clothing" },
     { label: "Blog", path: "/blogs" },
     { label: "Contact", path: "/contact" },
   ];
@@ -226,7 +226,10 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Navbar */}
-          <nav ref={navRef} className="hidden md:flex items-center gap-10 relative">
+          <nav
+            ref={navRef}
+            className="hidden md:flex items-center gap-10 relative"
+          >
             {isDesktop ? (
               <Image
                 ref={handRef}
@@ -243,12 +246,23 @@ export const Navbar = () => {
                 key={item.label}
                 href={item.path}
                 onMouseEnter={(e) =>
-                  isDesktop && startHoverTap(e.currentTarget as unknown as HTMLElement, item.label)
+                  isDesktop &&
+                  startHoverTap(
+                    e.currentTarget as unknown as HTMLElement,
+                    item.label,
+                  )
                 }
                 onMouseLeave={stopHoverTap}
-                onClick={(e) => handlePress(e.currentTarget as unknown as HTMLElement, item.label)}
+                onClick={(e) =>
+                  handlePress(
+                    e.currentTarget as unknown as HTMLElement,
+                    item.label,
+                  )
+                }
                 className={`relative font-medium transition-all text-center duration-200 px-2 py-8 min-w-20 ${
-                  active === item.label ? "bg-[#45685e] text-white rounded-b-full" : ""
+                  active === item.label
+                    ? "bg-[#45685e] text-white rounded-b-full"
+                    : ""
                 }`}
               >
                 {item.label}

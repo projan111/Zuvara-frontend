@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import SectionHeading from "../common-ui/SectionHeading";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import ImageGridSection from "./ImageGridSection";
 
 const WhyChoose = () => {
@@ -39,9 +39,9 @@ const WhyChoose = () => {
   ];
 
   return (
-    <section className="flex flex-col justify-center  lg:py-0 h-auto md:h-[65vh] min-h-screen   relative  bg-babyCare ">
+    <section className="flex flex-col justify-center lg:py-0 h-auto w-full relative">
       {/* ─── TOP WAVE ─── */}
-      <div className="absolute -top-46 left-0 w-full z-20000 pointer-events-none">
+      <div className="absolute top-0 left-0 w-full z-20000 pointer-events-none">
         <Image
           src="/new/wave.svg"
           alt=""
@@ -52,7 +52,7 @@ const WhyChoose = () => {
         />
       </div>
 
-      <div className="container mx-auto px-6 max-w-7xl z-10">
+      <div className="w-full  z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,45 +61,47 @@ const WhyChoose = () => {
           className="mb-16 text-center"
         >
           <SectionHeading
-            title="Why Choose"
-            highlight="Zuvara"
+            title="Why Choose Zuvara"
+            highlight=""
             description="Our commitment to uncompromising quality, safety, and comfort for every stage of your baby's growth."
             align="center"
           />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Values Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="mb-4 size-14 rounded-full bg-secondary/10 flex items-center justify-center">
-                  <Image
-                    src={value.icon}
-                    alt={value.title}
-                    width={32}
-                    height={32}
-                  />
-                </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-sm text-zinc-600 leading-relaxed">
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+        <div className="  bg-babyCare ">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mx-auto  max-w-7xl">
+            {/* Values Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {values.map((value, index) => (
+                <motion.div
+                  key={value.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white p-6 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="mb-2 size-14 rounded-full bg-secondary/10 flex items-center justify-center">
+                    <Image
+                      src={value.icon}
+                      alt={value.title}
+                      width={32}
+                      height={32}
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-foreground mb-2">
+                    {value.title}
+                  </h3>
+                  <p className="text-sm text-zinc-600 leading-relaxed">
+                    {value.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
 
-          {/* Visual Grid */}
-          <div className="w-full">
-            <ImageGridSection />
+            {/* Visual Grid */}
+            <div className="w-full">
+              <ImageGridSection />
+            </div>
           </div>
         </div>
       </div>
