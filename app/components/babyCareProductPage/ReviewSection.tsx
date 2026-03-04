@@ -135,10 +135,7 @@ Reviews
       </div>
 
       {/* List */}
-      <div
-        className="mt-6 rounded-2xl border bg-white/60 backdrop-blur"
-        style={{ borderColor: divider }}
-      >
+      <div className="mt-6 rounded-2xl border" style={{ borderColor: divider }}>
         {reviews.length === 0 ? (
           <div className="py-12 text-center">
             <p className="font-semibold" style={{ color: subtleText }}>
@@ -257,7 +254,7 @@ Reviews
         <div className="mt-4 flex justify-center">
           <button
             type="button"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-white/60 backdrop-blur text-sm font-semibold hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold hover:opacity-90 transition"
             style={{ borderColor: divider, color: pageText }}
           >
             Show more <ChevronDown size={16} />
