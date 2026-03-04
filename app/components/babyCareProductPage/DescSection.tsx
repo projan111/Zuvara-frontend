@@ -9,9 +9,7 @@ const DescSection = ({ product }: DescSectionProps) => {
   return (
     <div className="py-4 lg:py-8 text-center">
       <p
-        style={{
-          color: product.background || "#000000",
-        }}
+    
         className="text-lg lg:text-3xl font-semibold"
       >
         {product.description}

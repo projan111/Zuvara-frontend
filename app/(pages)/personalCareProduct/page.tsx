@@ -1,14 +1,23 @@
+"use client";
+
+import React from "react";
 import HeroSection from "@/app/components/personalCareProduct/HeroSection";
 import ProductList from "@/app/components/personalCareProduct/ProductList";
-import React from "react";
+import { motion } from "framer-motion";
 
-const page = () => {
+const PersonalCarePage = () => {
   return (
-    <div>
+    <motion.main 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      className="min-h-screen bg-white"
+    >
       <HeroSection />
-      <ProductList />
-    </div>
+      <div className="max-w-7xl mx-auto pb-20">
+        <ProductList />
+      </div>
+    </motion.main>
   );
 };
 
-export default page;
+export default PersonalCarePage;

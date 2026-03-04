@@ -102,7 +102,7 @@ const ProductFeature = ({
               </div>
               {product.featureImageDesc && (
                 <p
-                  className="font-bold text-sm tracking-wide bg-white/80 backdrop-blur-sm px-4 py-1 rounded-full"
+                  className="font-bold text-sm tracking-wide px-4 py-1 rounded-full border border-black/10"
                   style={{ color: "var(--subtle-text, #52525b)" }}
                 >
                   {product.featureImageDesc}
