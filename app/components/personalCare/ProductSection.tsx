@@ -13,7 +13,7 @@ const ProductSection = () => {
   return (
     <main className="relative w-full flex flex-col justify-between">
       <section className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-7xl flex flex-col lg:justify-between py-12 lg:py-0 gap-12 lg:gap-12 relative z-10">
-        {personalCareProducts.slice(0, 2).map((product) => (
+        {personalCareProducts.map((product) => (
           <div
             key={product.id}
             className={`flex flex-col lg:flex-row items-center lg:h-screen ${product.id === 2 && "lg:flex-row-reverse"}`}

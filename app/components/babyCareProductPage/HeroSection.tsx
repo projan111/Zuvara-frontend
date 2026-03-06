@@ -1,21 +1,13 @@
 "use client";
 import React from "react";
 import { Product } from "@/type/babyCareProductType";
-import Button from "../common-ui/Button";
-import Link from "next/link";
 import Image from "next/image";
 
 interface HeroSectionProps {
   product: Product;
 }
 const HeroSection = ({ product }: HeroSectionProps) => {
-  const handleScroll = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const element = document.getElementById("product-info");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+
 
   return (
     <div className="relative h-dvh flex items-center justify-between w-full mx-auto ">

@@ -26,7 +26,7 @@ const HeroSection = () => {
               content="Product List"
               link="/personalCareProduct"
               for="personalCare"
-              buttonClassName="z-30"
+              buttonClassName="z-30 text-white!"
             />
           </div>
         </div>

@@ -16,9 +16,7 @@ const DescSection = ({ product }: DescSectionProps) => {
       </p>
       <div className="space-y-3 text-zinc-600 text-sm lg:text-base leading-relaxed">
         <p>{product.subDesc1}</p>
-        {/* <p>{product.subDesc2}</p>
-        <p>{product.subDesc3}</p>
-        <p>{product.subDesc4}</p> */}
+
       </div>
     </div>
   );
