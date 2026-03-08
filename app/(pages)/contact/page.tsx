@@ -2,7 +2,6 @@
 
 import HeroSection from "@/app/components/contact/HeroSection";
 import { useSection } from "@/app/providers/SectionProvider";
-// import MapSection from "@/app/components/contact/MapSection";
 
 const Page = () => {
   const { activeSection } = useSection();
@@ -26,7 +25,6 @@ const Page = () => {
         }}
       />
       <HeroSection />
-      {/* <MapSection /> */}
     </div>
   );
 };
