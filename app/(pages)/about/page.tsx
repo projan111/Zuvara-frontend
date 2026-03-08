@@ -92,18 +92,26 @@ export default function AboutPage() {
         body: "#6d5b79",
       }
     : aboutPalette;
+  const heroImage = isPersonal
+    ? "/images/baby/bonding-personal.png"
+    : "/new/bonding.png";
+  const productHref = isPersonal ? "/personalCareProduct" : "/babyCareProduct";
 
   return (
     <main
       className="relative min-h-screen overflow-hidden"
       style={{ backgroundColor: pagePalette.page, color: pagePalette.ink }}
     >
-      <AboutHeroSection palette={pagePalette} />
+      <AboutHeroSection
+        palette={pagePalette}
+        heroImage={heroImage}
+        productHref={productHref}
+      />
       <AboutStorySection palette={pagePalette} stories={stories} />
       <AboutMilestonesSection palette={pagePalette} milestones={milestones} />
       <AboutPromisesSection palette={pagePalette} promises={promises} />
       <AboutTeamSection palette={pagePalette} team={team} />
-      <AboutCtaSection palette={pagePalette} />
+      <AboutCtaSection palette={pagePalette} productHref={productHref} />
     </main>
   );
 }

@@ -2,7 +2,6 @@
 
 import HeroSection from "@/app/components/contact/HeroSection";
 import { useSection } from "@/app/providers/SectionProvider";
-// import MapSection from "@/app/components/contact/MapSection";
 
 const Page = () => {
   const { activeSection } = useSection();
@@ -18,6 +17,15 @@ const Page = () => {
       }}
     >
       <div
+        className="pointer-events-none absolute top-2 md:top-3 lg:top-4 right-2 md:right-8 lg:right-10 text-right font-black uppercase select-none leading-none z-0"
+        style={{
+          fontSize: "clamp(4rem, 12vw, 11rem)",
+          color: isPersonal ? "rgba(130,0,219,0.11)" : "rgba(69,104,94,0.12)",
+        }}
+      >
+        ZUVARA
+      </div>
+      <div
         className="pointer-events-none absolute -top-14 right-6 h-48 w-48 rounded-full blur-3xl"
         style={{
           backgroundColor: isPersonal
@@ -26,7 +34,6 @@ const Page = () => {
         }}
       />
       <HeroSection />
-      {/* <MapSection /> */}
     </div>
   );
 };

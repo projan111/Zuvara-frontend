@@ -3,9 +3,13 @@ import type { AboutPalette } from "@/app/components/about/theme";
 
 type AboutCtaSectionProps = {
   palette: AboutPalette;
+  productHref: string;
 };
 
-export default function AboutCtaSection({ palette }: AboutCtaSectionProps) {
+export default function AboutCtaSection({
+  palette,
+  productHref,
+}: AboutCtaSectionProps) {
   return (
     <section className="px-4 pb-20 pt-8 sm:px-8 md:px-12 lg:px-16">
       <div
@@ -26,7 +30,7 @@ export default function AboutCtaSection({ palette }: AboutCtaSectionProps) {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
-            href="/babyCareProduct"
+            href={productHref}
             className="inline-flex rounded-full bg-white px-7 py-3 text-sm font-semibold"
             style={{ color: palette.accent }}
           >

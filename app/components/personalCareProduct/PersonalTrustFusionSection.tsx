@@ -121,45 +121,38 @@ export default function PersonalTrustFusionSection({
           </p>
         </div>
 
-        {/* Visual Comparison Section - Hidden side text on mobile, Flex images */}
         <div
-          className="flex flex-col md:flex-row justify-center items-center rounded-3xl md:rounded-4xl overflow-hidden"
+          className="flex justify-center items-center rounded-4xl px-4"
           style={{ backgroundColor: hexToRgba(theme.containerBg, 0.2) }}
         >
-          <div className="hidden lg:block lg:w-1/4 text-center">
+          <div className="left">
             <h2
-              className="text-6xl xl:text-8xl font-bold uppercase rotate-180 [writing-mode:vertical-lr]"
-              style={{ color: hexToRgba(theme.accent, 0.15) }}
+              className="text-8xl font-bold uppercase"
+              style={{ color: hexToRgba(theme.accent, 0.6) }}
             >
               Zuvara
             </h2>
           </div>
-
-          <div className="w-full lg:w-2/4 flex">
-            <div className="relative w-1/2 overflow-hidden">
-               <div className="absolute top-4 left-4 z-10 md:hidden bg-white/80 px-2 py-1 rounded text-[10px] font-bold uppercase">Zuvara</div>
+          <div className="Center">
+            <div className="flex">
               <Image
                 src={images.comparisonZuvara}
                 alt="Zuvara care"
-                width={800}
-                height={1200}
-                className="h-75 md:h-125 lg:h-150 w-full object-cover"
+                width={1000}
+                height={1000}
+                className="h-150 w-full object-cover"
               />
-            </div>
-            <div className="relative w-1/2 overflow-hidden border-l-2" style={{ borderColor: theme.border }}>
-              <div className="absolute top-4 right-4 z-10 md:hidden bg-zinc-200/80 px-2 py-1 rounded text-[10px] font-bold uppercase">Ordinary</div>
               <Image
                 src={images.comparisonOrdinary}
                 alt="Typical care"
-                width={800}
-                height={1200}
-                className="h-75 md:h-125 lg:h-150 w-full object-cover"
+                width={1000}
+                height={1000}
+                className="h-150 w-full object-cover -ml-0.5 border-l-2"
               />
             </div>
           </div>
-
-          <div className="hidden lg:block lg:w-1/4 text-center">
-            <h2 className="text-6xl xl:text-8xl font-bold uppercase [writing-mode:vertical-lr] text-zinc-500/10">
+          <div className="right">
+            <h2 className="text-8xl font-bold uppercase text-zinc-500/50">
               Ordinary
             </h2>
           </div>
@@ -168,7 +161,7 @@ export default function PersonalTrustFusionSection({
         {/* Comparison Table - Scrollable on very small devices */}
         <div className="overflow-x-auto">
           <div
-            className="min-w-125 md:min-w-full fx-rise overflow-hidden rounded-3xl border"
+            className="min-w-125 md:min-w-[85%] fx-rise overflow-hidden rounded-3xl border"
             style={{
               borderColor: `${theme.border}66`,
               backgroundColor: hexToRgba(theme.pageBg, 0.9),

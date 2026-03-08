@@ -5,6 +5,8 @@ import type { AboutPalette } from "@/app/components/about/theme";
 
 type AboutHeroSectionProps = {
   palette: AboutPalette;
+  heroImage: string;
+  productHref: string;
 };
 
 const heroNotes = [
@@ -18,7 +20,11 @@ const heroNotes = [
   },
 ];
 
-export default function AboutHeroSection({ palette }: AboutHeroSectionProps) {
+export default function AboutHeroSection({
+  palette,
+  heroImage,
+  productHref,
+}: AboutHeroSectionProps) {
   return (
     <section
       className="relative px-4 pt-12 sm:px-8 md:px-0 lg:px-0"
@@ -53,7 +59,7 @@ export default function AboutHeroSection({ palette }: AboutHeroSectionProps) {
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
-                href="/babyCareProduct"
+                href={productHref}
                 className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
                 style={{ backgroundColor: palette.accent, color: palette.page }}
               >
@@ -98,7 +104,7 @@ export default function AboutHeroSection({ palette }: AboutHeroSectionProps) {
                       style={{ backgroundColor: "rgba(255,255,255,0.85)" }}
                     />
                     <Image
-                      src="/new/bonding.png"
+                      src={heroImage}
                       alt="Mother holding baby"
                       fill
                       className="object-cover object-bottom"
