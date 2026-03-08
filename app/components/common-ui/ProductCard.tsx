@@ -34,6 +34,16 @@ interface ProductCardProps {
   style?: React.CSSProperties;
 }
 
+type ProductVariant = NonNullable<ProductType["variants"]>[number];
+
+const getVariantLabel = (variant: ProductVariant) => {
+  if ("size" in variant && variant.size) return variant.size;
+  if ("color" in variant && variant.color) return variant.color;
+  if ("name" in variant && variant.name) return variant.name;
+  if ("weight" in variant && variant.weight) return variant.weight;
+  return "";
+};
+
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
   index,
@@ -51,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const detailsHref = `/${routeMap[activeTab]}/${product.slug}`;
 
   const variantLabels = (product.variants ?? [])
-    .map((variant) => variant.size ?? variant.color ?? "")
+    .map(getVariantLabel)
     .filter(Boolean)
     .slice(0, 3);
 

@@ -22,6 +22,7 @@ export const SectionProvider = ({ children }: { children: React.ReactNode }) => 
   };
 
   const getSectionFromCookie = (): Section => {
+    if (typeof document === "undefined") return "none";
     const cookies = document.cookie.split("; ");
     const sectionCookie = cookies.find((c) => c.startsWith("zuvara-section="));
     const saved = sectionCookie?.split("=")[1];
