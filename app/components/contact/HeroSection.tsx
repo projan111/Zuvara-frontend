@@ -56,7 +56,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Visual Side - Fixed Overlap Logic */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center order-1 lg:order-2 mb-8 lg:mb-0">
+          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center order-1 lg:order-2 mb-8 lg:mb-0 lg:pt-20">
             <div className="relative flex flex-col items-center lg:items-end">
               
               {/* Responsive Chat Bubble */}
@@ -68,7 +68,7 @@ const HeroSection = () => {
                   transition={{ type: "spring", damping: 20, stiffness: 120 }}
                   className={cn(
                     "z-30 p-5 md:p-6 rounded-4xl shadow-xl backdrop-blur-lg border mb-4 lg:absolute",
-                    "lg:-top-16 lg:-left-32 lg:mb-0 lg:w-[320px]",
+                    "lg:top-4 lg:-left-32 lg:mb-0 lg:w-[320px]",
                     "w-[90%] max-w-87.5 relative",
                     theme.bubble
                   )}
@@ -91,7 +91,7 @@ const HeroSection = () => {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="relative"
+                className="relative lg:mt-8 translate-y-[20px]"
               >
                 <Image
                   src={theme.image}

@@ -228,7 +228,7 @@ export default function Footer() {
           <Image
             src={
               isPersonal
-                ? "/images/personalCare/sleeping-lady.png"
+                ? "/new/mommiesfinal.png"
                 : "/new/babiesplural.png"
             }
             width={1080}
@@ -237,7 +237,7 @@ export default function Footer() {
             className={cn(
               "object-cover object-top w-full max-w-245 h-auto",
               isPersonal
-                ? "object-contain h-[30vh] sm:h-[36vh] md:h-[42vh] w-auto"
+                ? "object-contain h-[38vh] sm:h-[46vh] md:h-[54vh] w-auto"
                 : "",
             )}
           />
