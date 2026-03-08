@@ -7,6 +7,9 @@ import Product from "@/app/components/babyCare/Product";
 import { useMediaQuery } from "react-responsive";
 import MobileHero from "@/app/components/babyCareProductMobile/HeroSection";
 import MobileProductList from "@/app/components/babyCareProductMobile/ProductList";
+import WhyZuvaraProductsSection from "@/app/components/babyCareProduct/WhyZuvaraProductsSection";
+import ProductFaqSection from "@/app/components/babyCareProduct/ProductFaqSection";
+import { babyCareListingTheme } from "@/app/components/babyCareProduct/theme";
 
 const BabyCareProductPage = () => {
   const isSmallerDevice = useMediaQuery({ maxWidth: 1000 });
@@ -15,20 +18,28 @@ const BabyCareProductPage = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="bg-[#FCFAF8]" // Soft off-white for a premium feel
+      className="bg-babyCare/20" // Soft off-white for a premium feel
     >
       {isSmallerDevice ? (
         <>
           <MobileHero />
           <div className="pb-12">
             <MobileProductList />
+            <div className="mx-auto mt-12 w-[90%] space-y-8">
+              <WhyZuvaraProductsSection theme={babyCareListingTheme} />
+              <ProductFaqSection theme={babyCareListingTheme} />
+            </div>
           </div>
         </>
       ) : (
         <>
-          <DesktopHero />
-          <div className="max-w-[1440px] mx-auto pb-24">
+          <DesktopHero theme={babyCareListingTheme} />
+          <div className="pb-24">
             <Product />
+            <div className="space-y-8">
+              <WhyZuvaraProductsSection theme={babyCareListingTheme} />
+              <ProductFaqSection theme={babyCareListingTheme} />
+            </div>
           </div>
         </>
       )}

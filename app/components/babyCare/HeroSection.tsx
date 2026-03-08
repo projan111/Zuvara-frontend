@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -10,27 +11,33 @@ export default function Home() {
         {/* ================= LEFT CONTENT ================= */}
         <div className="relative z-20 w-full lg:w-1/2 h-full flex items-center px-6 lg:px-20 ">
           <div className="max-w-[80%] space-y-2 lg:space-y-4">
-            <p className="text-xs lg:text-4xl font-bold font-amatic tracking-wide text-zinc-500 uppercase">
+            <p className="text-xs lg:text-sm font-semibold tracking-wide text-foreground">
               Premium Baby Care Essentials
             </p>
 
-            <h1 className="text-2xl lg:text-4xl font-extrabold font-poppins!  text-[#45685e]">
-              Gentle protection for babies. Reliable margins for partners.
-            </h1>
+            <h2 className="mt-5 text-2xl font-semibold text-foreground tracking-tight lg:text-5xl">
+              Gentle protection for babies.
+              <span className="ml-2 font-light italic">
+                Reliable margins for partners.
+              </span>
+            </h2>
 
-            <p className="text-sm lg:text-lg text-zinc-600 leading-relaxed">
+            <p className="text-sm lg:text-lg text-foreground mt-5 font-medium leading-relaxed">
               Trusted by newly married couples around the world, focusing on
               comfort and safety for your heart and healthy baby.
             </p>
 
             <div className="flex items-center gap-4 lg:gap-5 pt-2 lg:pt-4 flex-wrap">
-              <button className="bg-[#45685e] text-white px-6 lg:px-8 py-2.5 lg:py-3 rounded-full font-medium hover:shadow-xl hover:scale-105 transition duration-300 text-sm lg:text-base">
-                Explore Essentials
-              </button>
-
-              <button className="outline outline-[#45685e] text-[#45685e] px-6 lg:px-8 py-2.5 lg:py-3 rounded-full font-medium hover:scale-105 transition duration-300 text-sm lg:text-base">
-                Become a distributor
-              </button>
+              <Link href="/babyCareProduct">
+                <button className="bg-[#45685e] text-white px-6 lg:px-8 py-2.5 lg:py-3 rounded-full font-medium hover:shadow-xl cursor-pointer hover:scale-105 transition duration-300 text-sm lg:text-base">
+                  Explore Essentials
+                </button>
+              </Link>
+              <Link href="/contact">
+                <button className="outline outline-[#45685e] text-[#45685e] px-6 lg:px-8 py-2.5 lg:py-3 rounded-full font-medium hover:scale-105 transition duration-300 text-sm lg:text-base">
+                  Become a Distributor
+                </button>
+              </Link>
             </div>
           </div>
         </div>

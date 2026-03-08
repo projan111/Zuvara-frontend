@@ -3,7 +3,6 @@
 import Button from "../common-ui/Button";
 import { useSection } from "@/app/providers/SectionProvider";
 import { cn } from "@/lib/utils";
-import Title from "../shared/Title";
 
 const ContactSection = () => {
   const { activeSection } = useSection();
@@ -13,15 +12,21 @@ const ContactSection = () => {
   return (
     <section className={cn("h-auto container mx-auto px-4 lg:px-6 max-w-7xl")}>
       <div>
-        <div className="lg:text-center mb-4">
-          <Title
-            title="Let's"
-            highlighter="Connect"
-            desc="Diapers, wipes, and gentle care products meticulously designed to keep your baby clean, comfortable, and remarkably happy."
-            showBreak={false}
-            titleClassName="text-left"
-            descClassName="text-left max-w-full"
-          />
+        <div className="mb-4">
+          <div className="max-w-3xl py-4">
+            <h2
+              className={cn(
+                "mt-4 text-2xl lg:text-5xl font-semibold leading-[0.98]",
+                isPersonal ? "text-personalCare" : "text-foreground",
+              )}
+            >
+              Let&apos;s
+              <span className="ml-2 font-light italic">Talk</span>
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed font-medium md:text-base">
+              Our team will get back to you as soon as possible.
+            </p>
+          </div>
         </div>
 
         <div className="w-full flex flex-col gap-4">

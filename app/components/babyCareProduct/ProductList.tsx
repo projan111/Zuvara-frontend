@@ -7,7 +7,6 @@ import type { Product as ProductType } from "@/type/babyCareProductType";
 import SectionHeading from "../common-ui/SectionHeading";
 import { useMediaQuery } from "react-responsive";
 
-
 const ProductList = () => {
   const isSmallerDevice = useMediaQuery({ maxWidth: 1000 });
 

@@ -14,9 +14,17 @@ const BlogList = () => {
   return (
     <section className="container mx-auto py-4 lg:py-8 px-4 sm:px-6 lg:px-8 w-[90%]">
       <div className="mb-4 lg:mb-8">
-        <h2 className="text-3xl font-bold text-zinc-900 tracking-tight">
-          Recent blog posts
-        </h2>
+        <div className="max-w-3xl mx-auto text-center py-4 text-foreground">
+          <p className="text-sm font-semibold">Our Articles</p>
+          <h2 className="mt-4 text-2xl lg:text-5xl font-semibold leading-[0.98]">
+            Explore Our Expert
+            <span className="ml-2 font-light italic">Suggestions</span>
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed font-medium md:text-base">
+            We post the important articles daily so that you can learn and
+            implement them for your babies life.
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -58,10 +66,10 @@ const BlogList = () => {
                   </div>
                   <h3
                     className={cn(
-                      "text-xl font-bold text-zinc-900 leading-tight transition-colors",
+                      "text-xl font-semibold leading-tight transition-colors",
                       isPersonal
-                        ? "group-hover:text-personalCare"
-                        : "group-hover:text-foreground",
+                        ? "text-personalCare group-hover:underline"
+                        : "text-foreground  group-hover:underline",
                     )}
                   >
                     {blog.title}

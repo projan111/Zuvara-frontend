@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import { blogLists } from "@/constants";
 import { motion } from "framer-motion";
@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useSection } from "@/app/providers/SectionProvider";
-import { ArrowLeft, Calendar, User, Tag, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronRight } from "lucide-react";
 import DOMPurify from "dompurify";
 
 const BlogDetailPage = () => {
@@ -16,20 +16,15 @@ const BlogDetailPage = () => {
   const { activeSection } = useSection();
   const isPersonal = activeSection === "personal";
 
-  const [blog, setBlog] = useState<(typeof blogLists)[0] | null>(null);
-  const [relatedBlogs, setRelatedBlogs] = useState<typeof blogLists>([]);
+  const blog = useMemo(
+    () => blogLists.find((b) => b.slug === blogPage) || null,
+    [blogPage],
+  );
 
-  useEffect(() => {
-    const currentBlog = blogLists.find((b) => b.slug === blogPage);
-    if (currentBlog) {
-      setBlog(currentBlog);
-      // Filter related blogs (same category or just other blogs excluding current)
-      const related = blogLists
-        .filter((b) => b.id !== currentBlog.id)
-        .slice(0, 3);
-      setRelatedBlogs(related);
-    }
-  }, [blogPage]);
+  const relatedBlogs = useMemo(() => {
+    if (!blog) return [];
+    return blogLists.filter((b) => b.id !== blog.id).slice(0, 3);
+  }, [blog]);
 
   if (!blog) {
     return (
@@ -45,109 +40,115 @@ const BlogDetailPage = () => {
   }
 
   return (
-    <div className="min-h-screen lg:mt-24">
+    <div className="min-h-screen bg-zinc-50 lg:mt-5">
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] lg:h-[70vh] overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={blog.image}
-            alt={blog.title}
-            fill
-            className="object-cover object-top"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </motion.div>
-
-        <div className="absolute inset-0 flex items-center pt-6 pb-4 lg:pt-12">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full max-w-7xl">
+      <section className="px-4 pb-6 pt-4 sm:px-6 lg:px-0 lg:pb-10">
+        <div className="container mx-auto max-w-7xl">
+          <div className="relative h-[62vh] overflow-hidden rounded-4xl border border-white/20 shadow-2xl lg:h-[74vh]">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="max-w-3xl h-full flex flex-col justify-between"
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="absolute inset-0"
             >
-              <nav className="flex items-center gap-2 text-white/80 text-sm lg:text-base font-medium">
-                <Link href="/" className="">
-                  Home
-                </Link>
-                <ChevronRight size={14} />
-                <Link href="/blogs" className="">
-                  Blogs
-                </Link>
-                <ChevronRight size={14} />
-                <span
-                  className={cn(
-                    "truncate max-w-[200px] lg:max-w-none",
-                    isPersonal ? "text-personalCare" : "text-babyCare",
-                  )}
-                >
-                  {blog.title}
-                </span>
-              </nav>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <span
-                    className={cn(
-                      "px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-md text-white",
-                      isPersonal
-                        ? "bg-personalCare/70 border-personalCare/30"
-                        : "bg-babyCare/70 border-babyCare/30",
-                    )}
-                  >
-                    {blog.category}
-                  </span>
-                </div>
-
-                <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight">
-                  {blog.title}
-                </h1>
-
-                <div className="flex flex-wrap items-center gap-6 text-white/90">
-                  <div className="flex items-center gap-3">
-                    <div className="size-10 lg:size-12 rounded-full overflow-hidden border-2 border-white/50 bg-white/10 backdrop-blur-sm">
-                      <img
-                        src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${blog.author}`}
-                        alt={blog.author}
-                        className="size-full object-cover"
-                      />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs uppercase tracking-widest font-bold opacity-60">
-                        Written BY
-                      </span>
-                      <span className="font-bold text-sm lg:text-base">
-                        {blog.author}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="h-10 w-px bg-white/20 hidden sm:block" />
-
-                  <div className="flex flex-col">
-                    <span className="text-xs uppercase tracking-widest font-bold opacity-60">
-                      Published ON
-                    </span>
-                    <span className="font-bold text-sm lg:text-base">
-                      {blog.date}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <Image
+                src={blog.image}
+                alt={blog.title}
+                fill
+                className="object-cover object-top"
+                priority
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/45 to-black/30" />
             </motion.div>
+
+            <div className="absolute inset-0 flex items-end">
+              <div className="w-full p-5 sm:p-8 lg:p-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.45, duration: 0.8 }}
+                  className="max-w-4xl"
+                >
+                  <nav className="mb-6 flex items-center gap-2 text-xs font-medium text-white/85 sm:text-sm">
+                    <Link
+                      href="/"
+                      className="rounded-full bg-white/10 px-3 py-1 backdrop-blur-sm"
+                    >
+                      Home
+                    </Link>
+                    <ChevronRight size={14} />
+                    <Link
+                      href="/blogs"
+                      className="rounded-full bg-white/10 px-3 py-1 backdrop-blur-sm"
+                    >
+                      Blogs
+                    </Link>
+                    <ChevronRight size={14} />
+                    <span className="max-w-56 truncate rounded-full bg-white/10 px-3 py-1 text-white/90 backdrop-blur-sm sm:max-w-none">
+                      {blog.title}
+                    </span>
+                  </nav>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={cn(
+                          "rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-widest backdrop-blur-md text-white",
+                          isPersonal
+                            ? "border-personalCare/35 bg-personalCare/65"
+                            : "border-babyCare/40 bg-babyCare/65",
+                        )}
+                      >
+                        {blog.category}
+                      </span>
+                    </div>
+
+                    <h1 className="text-3xl font-bold leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl">
+                      {blog.title}
+                    </h1>
+
+                    <div className="flex flex-wrap items-center gap-6 text-white/90">
+                      <div className="flex items-center gap-3">
+                        <div className="relative size-10 overflow-hidden rounded-full border-2 border-white/50 bg-white/10 backdrop-blur-sm lg:size-12">
+                          <Image
+                            src={blog.authorImage}
+                            alt={blog.author}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-xs font-bold uppercase tracking-widest opacity-65">
+                            Written by
+                          </span>
+                          <span className="text-sm font-bold lg:text-base">
+                            {blog.author}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="hidden h-10 w-px bg-white/20 sm:block" />
+
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold uppercase tracking-widest opacity-65">
+                          Published on
+                        </span>
+                        <span className="text-sm font-bold lg:text-base">
+                          {blog.date}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="py-8 lg:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <section className="bg-white pb-12 pt-6 lg:pb-16 lg:pt-10">
+        <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -155,93 +156,78 @@ const BlogDetailPage = () => {
             transition={{ duration: 0.8 }}
             className="w-full"
           >
+            <div className="mb-8 flex items-center justify-between border-b border-zinc-200 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="relative size-10 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100">
+                  <Image
+                    src={blog.authorImage}
+                    alt={blog.author}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-zinc-900">
+                    {blog.author}
+                  </p>
+                  <p className="text-xs text-zinc-500">{blog.date}</p>
+                </div>
+              </div>
+              <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+                {blog.category}
+              </span>
+            </div>
             <div
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(blog.content) || "",
               }}
               className={cn(
-                "text-zinc-700 leading-relaxed text-lg lg:text-xl",
-                // Heading 2 styles
-                "[&_h2]:text-3xl [&_h2]:lg:text-4xl [&_h2]:font-extrabold [&_h2]:mt-8 lg:[&_h2]:mt-12 [&_h2]:mb-6 [&_h2]:leading-tight",
+                "text-[1.12rem] leading-8 text-foreground font-medium",
+                "[&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-[1.95rem] [&_h2]:font-semibold [&_h2]:leading-tight",
                 isPersonal
                   ? "[&_h2]:text-personalCare"
                   : "[&_h2]:text-foreground",
-                // Paragraph styles
-                "[&_p]:mb-6",
-                // List styles
-                "[&_ul]:mb-6 [&_ul]:list-disc [&_ul]:pl-6",
-                "[&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:pl-6",
-                "[&_li]:mb-2",
-                // Bold text
+                "[&_p]:mb-7 [&_p]:leading-8",
+                "[&_ul]:mb-7 [&_ul]:list-disc [&_ul]:pl-6",
+                "[&_ol]:mb-7 [&_ol]:list-decimal [&_ol]:pl-6",
+                "[&_li]:mb-2 [&_li]:leading-8",
                 "[&_strong]:font-bold",
                 isPersonal
                   ? "[&_strong]:text-personalCare"
-                  : "[&_strong]:text-foreground",
+                  : "[&_strong]:text-zinc-900",
               )}
             />
+            <footer className="mt-12 border-t border-zinc-200 pt-8">
+              <Link
+                href="/blogs"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 transition-colors hover:text-zinc-900"
+              >
+                <ArrowLeft
+                  size={18}
+                  className="transition-transform group-hover:-translate-x-1"
+                />
+                Back to all articles
+              </Link>
+            </footer>
           </motion.div>
-
-          <footer className="pt-8 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-end gap-6">
-            {/* <div className="flex items-center gap-3">
-              <span className="text-zinc-500 font-bold uppercase text-xs tracking-widest">
-                Share this post:
-              </span>
-              <div className="flex gap-2">
-                {["Facebook", "Twitter", "Linkedin"].map((platform) => (
-                  <button
-                    key={platform}
-                    className="size-10 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-600 hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-all"
-                  >
-                    <span className="sr-only">{platform}</span>
-                    <div className="size-5 bg-zinc-400 rounded-sm" />
-                  </button>
-                ))}
-              </div>
-            </div> */}
-
-            <Link
-              href="/blogs"
-              className={cn(
-                "group flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all",
-                isPersonal
-                  ? "bg-personalCare hover:bg-personalCare/70 text-white!"
-                  : "bg-foreground text-white! hover:bg-babyCare",
-              )}
-            >
-              <ArrowLeft
-                size={18}
-                className="transition-transform group-hover:-translate-x-1"
-              />
-              All Articles
-            </Link>
-          </footer>
         </div>
       </section>
 
       {/* Related Blogs Section */}
       <section
         className={cn(
-          "py-8 lg:py-16",
-          isPersonal ? "bg-personalCare/5" : "bg-babyCare/10",
+          "border-t border-zinc-200 bg-white py-10 lg:py-14",
+          isPersonal ? "bg-personalCare/0" : "bg-white",
         )}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="flex items-end justify-between mb-12 lg:mb-16">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl lg:text-5xl font-bold text-zinc-900 tracking-tight">
-                Recommended Stories
-              </h2>
-            </div>
-            <Link
-              href="/blogs"
-              className="hidden sm:flex items-center gap-2 font-bold text-zinc-400 hover:text-zinc-900 transition-colors"
-            >
-              View More
-              <ArrowLeft className="rotate-180" size={16} />
-            </Link>
+        <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-0">
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
+              More from Zuvara Blog
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="space-y-6">
             {relatedBlogs.map((item, idx) => (
               <motion.div
                 key={item.id}
@@ -249,42 +235,41 @@ const BlogDetailPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group"
+                className="group border-b border-zinc-200 pb-6 last:border-0 last:pb-0"
               >
-                <Link href={`/blogs/${item.slug}`} className="block space-y-4">
-                  <div className="aspect-[16/10] rounded-3xl overflow-hidden bg-zinc-200 border border-zinc-100 relative">
+                <Link
+                  href={`/blogs/${item.slug}`}
+                  className="flex items-start gap-4 sm:gap-5"
+                >
+                  <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-xl bg-zinc-200 sm:w-28">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span
-                        className={cn(
-                          "px-3 py-1 backdrop-blur-sm rounded-full text-[10px] font-black uppercase tracking-wider text-zinc-900",
-                          isPersonal
-                            ? "bg-personalCare text-white"
-                            : "bg-babyCare",
-                        )}
-                      >
-                        {item.category}
-                      </span>
-                    </div>
                   </div>
-                  <div className="space-y-2">
+                  <div className="min-w-0 space-y-2">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
+                      {item.category}
+                    </p>
                     <h3
                       className={cn(
-                        "text-xl font-bold text-zinc-900 line-clamp-2 leading-[1.3] transition-colors",
+                        "line-clamp-2 text-xl font-semibold leading-[1.25] text-zinc-900 transition-colors group-hover:underline",
                         isPersonal
                           ? "group-hover:text-personalCare"
-                          : "group-hover:text-foreground",
+                          : "group-hover:text-zinc-900",
                       )}
                     >
                       {item.title}
                     </h3>
-                    <div className="flex items-center gap-2 text-zinc-500 text-xs font-medium">
-                      <span>{item.author}</span>
+                    <p className="line-clamp-2 text-sm leading-relaxed text-zinc-600">
+                      {item.desc}
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-zinc-500">
+                      <span className="font-semibold text-zinc-700">
+                        {item.author}
+                      </span>
                       <span className="size-1 rounded-full bg-zinc-300" />
                       <span>{item.date}</span>
                     </div>

@@ -41,7 +41,7 @@ const Product = () => {
     stroller: "strollerRockerProduct",
   };
 
-  const browseHref = `/${routeMap[activeTab]}`;
+  // const browseHref = `/${routeMap[activeTab]}`;
 
   const getDescription = (product: ProductItem) =>
     product.description ??
@@ -50,18 +50,22 @@ const Product = () => {
   return (
     <>
       {/* ================= PRODUCT SECTION ================= */}
-      <section className="relative py-8 lg:py-12 ">
+      <section className="relative py-8 lg:py-0 ">
         <div className="container mx-auto px-4 sm:px-6 lg:px-6 w-full lg:w-[90%]">
           <div className="mb-8 flex flex-col items-center justify-center gap-2 text-center">
-            <h2 className="text-2xl lg:text-3xl font-semibold text-foreground tracking-tight">
-              Bestsellers
+            <h2 className="hero-copy mt-6 max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight text-[#45685e]">
+              Best selling
+              <span className="ml-3 font-light italic text-[#6d877f]">
+                baby essentials
+              </span>
             </h2>
-            <Link
-              href={browseHref}
-              className="text-sm font-medium text-zinc-700 hover:text-foreground transition-colors"
-            >
-              Browse all products {"->"}
-            </Link>
+
+            <p className="hero-copy mt-5 max-w-2xl text-sm font-medium leading-relaxed text-zinc-600 md:text-base">
+              Discover our most loved products, chosen by parents for their
+              perfect blend of comfort, quality, and style. These essentials are
+              designed to support your baby&apos;s daily needs with care and
+              reliability.
+            </p>
           </div>
 
           {/* Tabs */}
@@ -132,12 +136,12 @@ const Product = () => {
                     />
                   </div>
 
-                  <h3 className="mt-4 text-sm font-semibold text-zinc-900 group-hover:text-foreground line-clamp-1">
+                  <h3 className="mt-4 text-sm lg:text-xl font-semibold text-zinc-900 group-hover:text-foreground line-clamp-1">
                     <span className="group-hover:underline underline-foreground decoration-foreground">
                       {product.name}
                     </span>
                   </h3>
-                  <p className="mt-1 text-xs text-zinc-500 leading-relaxed line-clamp-2 min-h-9">
+                  <p className="mt-1 text-xs lg:text-sm font-medium text-zinc-500 leading-relaxed line-clamp-2 min-h-9">
                     {getDescription(product)}
                   </p>
                   <div className="mt-auto pt-4 flex justify-end">

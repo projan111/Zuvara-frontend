@@ -3,126 +3,335 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import ImageGridSection from "./ImageGridSection";
+import {
+  Baby,
+  HeartHandshake,
+  Leaf,
+  ShieldAlert,
+  ShieldCheck,
+  Sparkles,
+  Star,
+} from "lucide-react";
+
+const palette = {
+  accent: "#45685e",
+  accentSoft: "#6d877f",
+  border: "#84aaa5",
+  chip: "#d7ebe8",
+  panel: "#edf5f1",
+  page: "#f7fbf8",
+  body: "#596963",
+};
+
+const values = [
+  {
+    id: 1,
+    icon: ShieldCheck,
+    title: "Premium Quality",
+    description:
+      "Gentle materials specifically designed to protect delicate baby skin.",
+  },
+  {
+    id: 2,
+    icon: Leaf,
+    title: "Pure and Thoughtful",
+    description:
+      "Carefully selected components that feel soft, breathable, and dependable.",
+  },
+  {
+    id: 3,
+    icon: HeartHandshake,
+    title: "Parent Approved",
+    description:
+      "Built around real family routines, comfort needs, and daily convenience.",
+  },
+  {
+    id: 4,
+    icon: Sparkles,
+    title: "Comfort Driven",
+    description:
+      "Supportive fit and reliable performance through naps, play, and overnight use.",
+  },
+];
+
+const trustStats = [
+  {
+    label: "Parents Trusting Zuvara",
+    value: "50K+",
+    chip: "Families",
+    icon: Baby,
+  },
+  {
+    label: "Safety Checks Per Batch",
+    value: "30+",
+    chip: "Safety",
+    icon: ShieldAlert,
+  },
+  {
+    label: "Average Customer Rating",
+    value: "4.8/5",
+    chip: "Rating",
+    icon: Star,
+  },
+];
+
+const highlightPoints = [
+  "Designed around softness, absorbency, and practical ease.",
+  "Made to support calmer daily routines for both babies and parents.",
+  "Refined visual language that feels premium without losing warmth.",
+];
 
 const WhyChoose = () => {
-  const values = [
-    {
-      id: 1,
-      icon: "/icons/premium.png",
-      title: "Premium Quality",
-      description:
-        "Gentle materials specifically designed to protect delicate baby skin.",
-    },
-    {
-      id: 2,
-      icon: "/icons/nature.png",
-      title: "100% Natural",
-      description:
-        "Hypoallergenic and toxin-free components for long-lasting dryness.",
-    },
-    {
-      id: 3,
-      icon: "/icons/trusted.png",
-      title: "Dermatologist Tested",
-      description:
-        "Clinically validated safety standards for your baby's daily routine.",
-    },
-    {
-      id: 4,
-      icon: "/icons/comfortable.png",
-      title: "Ergonomic Fit",
-      description:
-        "Advanced design ensuring comfort, ease of movement, and leak protection.",
-    },
-  ];
-
-  const trustStats = [
-    { label: "Parents Trusting Zuvara", value: "50K+" },
-    { label: "Safety Checks Per Batch", value: "30+" },
-    { label: "Average Customer Rating", value: "4.8/5" },
-  ];
-
   return (
-    <section className="relative w-full py-16 lg:py-24 bg-white">
-      <div className="container mx-auto w-[90%]">
+    <section className="relative w-full overflow-hidden py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-0 lg:px-0">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-12"
+          className="mx-auto mb-8 max-w-3xl text-center"
         >
-          <p className="inline-flex rounded-full border border-[#45685e]/20 bg-[#eef4f1] px-3 py-1 text-[11px] font-semibold tracking-[0.14em] uppercase text-[#45685e]">
-            About Us
+          <p
+            className="inline-flex rounded-full border px-4 py-2 text-xs font-semibold"
+            style={{
+              borderColor: `${palette.border}44`,
+              backgroundColor: "rgba(255,255,255,0.72)",
+              color: palette.accent,
+            }}
+          >
+            Why Choose Zuvara
           </p>
-          <h2 className="mt-4 text-3xl lg:text-4xl font-semibold tracking-tight text-zinc-900">
-            Thoughtful baby care for modern families
+          <h2
+            className="mt-5 text-2xl font-semibold tracking-tight lg:text-5xl"
+            style={{ color: palette.accent }}
+          >
+            Thoughtful baby care,
+            <span
+              className="ml-2 font-light italic"
+              style={{ color: palette.accentSoft }}
+            >
+              elevated for modern families.
+            </span>
           </h2>
-          <p className="mt-3 text-sm lg:text-base text-zinc-600 leading-relaxed">
-            We design baby essentials around what matters most: comfort, safety,
-            and day-to-day convenience for both babies and parents.
+          <p
+            className="mt-4 text-sm leading-relaxed font-medium lg:text-base"
+            style={{ color: palette.body }}
+          >
+            Zuvara blends quiet premium design with everyday performance so
+            every product feels softer, safer, and more reassuring to use.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 lg:p-8">
-            <h3 className="text-xl lg:text-2xl font-semibold text-zinc-900">
-              Why families choose Zuvara
-            </h3>
-            <p className="mt-3 text-sm lg:text-base text-zinc-600 leading-relaxed">
-              From soft-touch materials to performance-tested protection, every
-              product is built to support healthy growth and stress-free care.
-            </p>
+        <div className="relative overflow-hidden px-4 py-6 md:px-0 md:py-8">
+          <div className="pointer-events-none absolute right-0 top-0 h-56 w-56 rounded-full blur-3xl" />
+          <div className="grid gap-3 lg:grid-cols-3">
+            {trustStats.map((item) => {
+              const Icon = item.icon;
 
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {trustStats.map((item) => (
+              return (
                 <div
                   key={item.label}
-                  className="rounded-2xl border border-zinc-200 bg-white px-4 py-3"
+                  className="rounded-[1.8rem] border px-5 py-4 md:px-6 md:py-5 bg-babyCare/50"
+                  style={{
+                    borderColor: `${palette.border}44`,
+                    boxShadow: "0 14px 30px rgba(69,104,94,0.05)",
+                  }}
                 >
-                  <p className="text-xl font-semibold text-zinc-900">
+                  <div className="flex items-center justify-between gap-3">
+                    <span
+                      className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold"
+                      style={{
+                        backgroundColor: "rgba(255,255,255,0.95)",
+                        color: palette.accentSoft,
+                      }}
+                    >
+                      <Icon size={12} />
+                      {item.chip}
+                    </span>
+                  </div>
+                  <p
+                    className="mt-8 text-4xl font-semibold tracking-tight md:text-5xl"
+                    style={{ color: palette.accent }}
+                  >
                     {item.value}
                   </p>
-                  <p className="text-xs text-zinc-500 mt-1">{item.label}</p>
+                  <p
+                    className="mt-3 max-w-48 text-sm leading-relaxed font-medium"
+                    style={{ color: palette.body }}
+                  >
+                    {item.label}
+                  </p>
                 </div>
-              ))}
-            </div>
-
-            <Link
-              href="/about"
-              className="mt-6 inline-flex items-center rounded-full border border-[#45685e]/30 px-5 py-2.5 text-sm font-medium text-[#45685e] transition-colors hover:bg-[#45685e] hover:text-white"
-            >
-              Learn more about Zuvara
-            </Link>
+              );
+            })}
           </div>
+          <div className="grid items-center gap-8 lg:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55 }}
+              viewport={{ once: true }}
+              className="relative z-10"
+            >
+              <h3
+                className="mt-8 text-2xl font-semibold leading-tight lg:text-3xl"
+                style={{ color: palette.accent }}
+              >
+                Built for gentler routines, trusted for everyday life.
+              </h3>
 
-          <div className="rounded-3xl border border-zinc-200 bg-[#f7fbf9] p-4 lg:p-6">
-            <ImageGridSection />
+              <p
+                className="mt-4 max-w-xl text-sm font-medium leading-relaxed lg:text-base"
+                style={{ color: palette.body }}
+              >
+                From soft-touch materials to performance-tested protection,
+                every Zuvara product is designed to support healthier growth,
+                calmer care, and more confident parenting.
+              </p>
+
+              <div className="mt-6 space-y-3">
+                {highlightPoints.map((point) => (
+                  <div
+                    key={point}
+                    className="rounded-3xl border px-4 py-3"
+                    style={{
+                      borderColor: `${palette.border}40`,
+                      backgroundColor: "rgba(255,255,255,0.72)",
+                      color: palette.accent,
+                    }}
+                  >
+                    <p className="text-sm font-medium leading-relaxed lg:text-base">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                href="/about"
+                className="mt-7 inline-flex items-center rounded-full px-6 py-3 text-sm font-semibold text-white! transition-transform duration-300 hover:scale-[1.02]"
+                style={{ backgroundColor: palette.accent }}
+              >
+                Learn more about Zuvara
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="grid gap-4">
+                  <div
+                    className="rounded-4xl border p-5"
+                    style={{
+                      borderColor: `${palette.border}44`,
+                      backgroundColor: "rgba(255,255,255,0.78)",
+                    }}
+                  >
+                    <p
+                      className="text-xs font-semibold "
+                      style={{ color: palette.accentSoft }}
+                    >
+                      Everyday Calm
+                    </p>
+                    <p
+                      className="mt-3 text-lg font-semibold"
+                      style={{ color: palette.accent }}
+                    >
+                      Designed to look softer and feel better in every routine.
+                    </p>
+                  </div>
+
+                  <div
+                    className="relative overflow-hidden rounded-4xl border"
+                    style={{
+                      minHeight: "13rem",
+                      borderColor: `${palette.border}44`,
+                      backgroundColor: "rgba(255,255,255,0.72)",
+                    }}
+                  >
+                    <Image
+                      src="/images/baby/baby24.png"
+                      alt="Happy baby portrait"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  className="relative overflow-hidden rounded-4xl border"
+                  style={{
+                    minHeight: "28rem",
+                    borderColor: `${palette.border}44`,
+                    background:
+                      "linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(237,245,241,0.94) 100%)",
+                  }}
+                >
+                  <div
+                    className="pointer-events-none absolute inset-x-8 bottom-3 h-16 rounded-full blur-2xl"
+                    style={{ backgroundColor: "rgba(255,255,255,0.82)" }}
+                  />
+                  <Image
+                    src="/new/babyzuvara.png"
+                    alt="Zuvara baby care visual"
+                    fill
+                    className="object-contain object-bottom p-4"
+                  />
+                  <div className="absolute left-4 top-4 rounded-full bg-white/85 px-4 py-2 text-xs font-semibold text-[#45685e]">
+                    Premium baby care
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {values.map((value, index) => (
-            <motion.div
-              key={value.id}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              className="rounded-2xl border border-zinc-200 bg-white p-5"
-            >
-              <div className="mb-3 size-11 rounded-full bg-[#eef4f1] flex items-center justify-center">
-                <Image src={value.icon} alt={value.title} width={22} height={22} />
-              </div>
-              <h3 className="text-base font-semibold text-zinc-900">
-                {value.title}
-              </h3>
-              <p className="mt-2 text-sm text-zinc-600 leading-relaxed">
-                {value.description}
-              </p>
-            </motion.div>
-          ))}
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {values.map((value, index) => {
+            const Icon = value.icon;
+
+            return (
+              <motion.div
+                key={value.id}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="rounded-3xl border p-6 bg-babyCare/10"
+                style={{
+                  borderColor: `${palette.border}44`,
+                }}
+              >
+                <div
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl"
+                  style={{
+                    backgroundColor: palette.accent,
+                    color: "#ffffff",
+                  }}
+                >
+                  <Icon size={20} />
+                </div>
+                <h3
+                  className="text-lg font-semibold"
+                  style={{ color: palette.accent }}
+                >
+                  {value.title}
+                </h3>
+                <p
+                  className="mt-3 text-sm leading-relaxed"
+                  style={{ color: palette.body }}
+                >
+                  {value.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

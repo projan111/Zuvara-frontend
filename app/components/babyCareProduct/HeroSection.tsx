@@ -3,132 +3,167 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-// import Title from "../shared/Title";
 import Image from "next/image";
+import { hexToRgba } from "@/app/components/babyCareProductPage/theme";
+import {
+  babyCareListingTheme,
+  type BabyCareListingTheme,
+} from "@/app/components/babyCareProduct/theme";
 
-const HeroSection = () => {
+const heroPills = [
+  "Skin-first essentials",
+  "Soft everyday care",
+  "Trusted by parents",
+];
+
+const floatingNotes = [
+  { title: "Gentle Touch", body: "Soft materials for delicate skin." },
+  { title: "Daily Comfort", body: "Made for active mornings and calm nights." },
+];
+
+type HeroSectionProps = {
+  theme?: BabyCareListingTheme;
+};
+
+const HeroSection = ({ theme = babyCareListingTheme }: HeroSectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      // Create timeline for baby image
-      const babyTl = gsap.timeline();
-      babyTl
-        .fromTo(
-          ".baby-image",
-          {
-            y: "100vh",
-            autoAlpha: 0,
-          },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 1.5,
-            ease: "power2.out",
-          },
-        )
-        .to(".baby-image", {
-          y: -15,
-          duration: 2.5,
-          ease: "power1.inOut",
-          repeat: -1,
-          yoyo: true,
-        });
+      gsap.fromTo(
+        ".hero-copy",
+        { autoAlpha: 0, y: 28 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power2.out",
+          stagger: 0.08,
+        },
+      );
 
-      // Create timeline for diaper image
-      const diaperTl = gsap.timeline({ delay: 0.3 });
-      diaperTl
-        .fromTo(
-          ".diaper-image",
-          {
-            y: "100vh",
-            autoAlpha: 0,
-          },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 1.5,
-            ease: "power2.out",
-          },
-        )
-        .to(".diaper-image", {
-          y: -15,
-          duration: 2,
-          ease: "power1.inOut",
-          repeat: -1,
-          yoyo: true,
-        });
+      gsap.fromTo(
+        ".hero-visual",
+        { autoAlpha: 0, y: 48, scale: 0.94 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.1,
+          ease: "power3.out",
+        },
+      );
+
+      gsap.to(".hero-float", {
+        y: -14,
+        duration: 2.8,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        stagger: 0.22,
+      });
     },
     { scope: containerRef },
   );
 
   return (
-    <section className="h-[80vh] bg-babyCare flex flex-col lg:flex-row items-center justify-center relative px-4">
-      <div className="w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-20 relative z-30">
-        {/* Left Content */}
-        <div className="w-full mx-auto z-10">
-          <p className="text-xs font-semibold text-zinc-600 uppercase tracking-wider mb-3">
-            Premium Collection
-          </p>
+    <section
+      ref={containerRef}
+      className="relative isolate min-h-[88vh] overflow-hidden px-4 py-12 md:px-6 lg:px-10 bg-babyCare/50"
+    >
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center text-center">
+        {/* <div className="hero-copy inline-flex rounded-full border border-yellow-500 bg-yellow-500 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#ffffff] shadow-[0_12px_28px_rgba(69,104,94,0.08)] backdrop-blur-sm">
+          Premium Collection
+        </div> */}
 
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#45685e] mb-3 leading-tight lg:leading-none font-poppins">
-            Discover our complete range of products
-          </h2>
-
-          <p className="hidden md:block text-zinc-600 text-sm lg:text-base leading-relaxed max-w-md">
-            Quality baby products designed for comfort and safety.
-          </p>
-        </div>
-
-        {/* Right Image */}
-        <div className="w-full relative h-64 lg:h-full min-h-100 flex justify-center items-end z-30">
-          <Image
-            src="/images/baby/baby-with-product.png"
-            alt="Baby with product"
-            fill
-            className="object-contain object-center"
-            priority
-          />
-        </div>
-      </div>
-
-      {/* Background Brand Text */}
-      <div className="hidden lg:block absolute right-0 top-32 z-20 pointer-events-none text-[#45685e] font-extrabold">
-        <h2 className="text-[140px] xl:text-[180px] uppercase leading-none opacity-60">
-          zuvara
+        <h2
+          className="hero-copy mt-6 max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight"
+          style={{ color: theme.accent }}
+        >
+          Everyday baby care,
+          <span
+            className="ml-3 font-light italic"
+            style={{ color: theme.accentSoft }}
+          >
+            centered around comfort.
+          </span>
         </h2>
+
+        <p className="hero-copy mt-5 max-w-2xl text-sm font-medium leading-relaxed text-zinc-600 md:text-base">
+          Discover essentials designed to feel gentle, look refined, and support
+          your baby through every daily moment with softness and safety.
+        </p>
+
+        <div className="hero-copy mt-6 flex flex-wrap items-center justify-center gap-3">
+          {heroPills.map((pill) => (
+            <span
+              key={pill}
+              className="rounded-full border bg-white/72 px-4 py-2 text-sm font-medium shadow-[0_10px_22px_rgba(69,104,94,0.08)]"
+              style={{
+                borderColor: `${theme.border}60`,
+                color: theme.accent,
+              }}
+            >
+              {pill}
+            </span>
+          ))}
+        </div>
+
+        <div className="hero-visual relative mt-12 flex w-full justify-center md:mt-14 z-20">
+          <div className="relative w-full max-w-4xl">
+            <div className="hero-float absolute left-0 top-10 hidden w-52 rounded-[1.8rem] border border-white/60 bg-white/50 p-4 text-left shadow-[0_18px_38px_rgba(69,104,94,0.12)] backdrop-blur-sm lg:block">
+              <p className="text-sm font-semibold" style={{ color: theme.accent }}>
+                {floatingNotes[0].title}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                {floatingNotes[0].body}
+              </p>
+            </div>
+
+            <div className="hero-float absolute right-0 top-22 hidden w-52 rounded-[1.8rem] border border-white/60 bg-white/50 p-4 text-left shadow-[0_18px_38px_rgba(69,104,94,0.12)] backdrop-blur-sm lg:block">
+              <p className="text-sm font-semibold" style={{ color: theme.accent }}>
+                {floatingNotes[1].title}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                {floatingNotes[1].body}
+              </p>
+            </div>
+
+            <div className="hero-float relative mx-auto flex min-h-105 w-full max-w-4xl items-end justify-center overflow-hidden rounded-[2.6rem] px-6 pt-10 md:min-h-130">
+              <Image
+                src="/images/baby/baby-with-product.png"
+                alt="Baby with product"
+                fill
+                priority
+                className="object-contain object-bottom"
+              />
+            </div>
+
+            <div className="hero-copy mt-6 flex items-center justify-center gap-3 md:hidden">
+              {floatingNotes.map((note) => (
+                <div
+                  key={note.title}
+                  className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 text-left shadow-[0_12px_24px_rgba(69,104,94,0.1)]"
+                >
+                  <p className="text-sm font-semibold" style={{ color: theme.accent }}>
+                    {note.title}
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-zinc-600">
+                    {note.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[84px] font-black text-foreground/70 uppercase leading-none md:text-[120px] xl:text-[170px]"
+        >
+          zuvara
+        </div>
       </div>
-      {/* <div className="absolute bottom-0 left-0 w-full h-20 bg-linear-to-t from-white to-transparent z-20 pointer-events-none" /> */}
     </section>
-    // <section className="relative lg:min-h-screen flex lg:items-center overflow-hidden">
-    //   <div
-    //     ref={containerRef}
-    //     className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10 flex flex-col lg:flex-row lg:items-center pt-4 md:pt-0"
-    //   >
-    //     <div className="lg:w-1/2">
-    //       <Title
-    //         title="Everyday Baby"
-    //         highlighter="Care Essentials."
-    //         desc="Diapers, wipes, and gentle care products meticulously designed to
-    //           keep your baby clean, comfortable, and remarkably happy."
-    //       />
-    //     </div>
-
-    //     <div className="lg:w-1/2 flex justify-end items-center relative">
-    //       <img
-    //         src="/images/baby/baby-in-cotton-cloud.png"
-    //         alt="Baby in cotton cloud"
-    //         className="baby-image w-auto h-auto max-h-[50vh] lg:max-h-[80vh] object-contain drop-shadow-xl z-30"
-    //       />
-
-    //       <img
-    //         src="/images/diaper/diaper-on-cloud.png"
-    //         alt="diaper on the cloud"
-    //         className="diaper-image absolute top-[0%] lg:top-[10%] left-[15%] drop-shadow-xl w-40 lg:w-48 z-0"
-    //       />
-    //     </div>
-    //   </div>
-    // </section>
   );
 };
 
