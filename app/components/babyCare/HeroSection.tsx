@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="relative h-screen">
-      <section className="relative flex flex-col lg:flex-row h-screen">
+    <div className="relative bg-babyCare/50">
+      <section className="relative flex flex-col lg:flex-row h-[92vh] justify-center items-center">
         {/* ================= LEFT CONTENT ================= */}
         <div className="relative z-20 w-full lg:w-1/2 h-full flex items-center px-6 lg:px-20 ">
           <div className="max-w-[80%] space-y-2 lg:space-y-4">
@@ -16,10 +16,7 @@ export default function Home() {
             </p>
 
             <h2 className="mt-5 text-2xl font-semibold text-foreground tracking-tight lg:text-5xl">
-              Gentle protection for babies.
-              <span className="ml-2 font-light italic">
-                Reliable margins for partners.
-              </span>
+              Gentle protection for babies. <br />Reliable margins for partners.
             </h2>
 
             <p className="text-sm lg:text-lg text-foreground mt-5 font-medium leading-relaxed">
@@ -43,7 +40,7 @@ export default function Home() {
         </div>
 
         {/* ================= CENTER VIDEO ================= */}
-        <div className="relative lg:absolute lg:left-[50%] lg:bottom-20 lg:-translate-x-1/2 w-full flex justify-center mt-10 lg:mt-0 z-30">
+        <div className="relative lg:absolute lg:left-[50%] lg:-translate-x-1/2 w-full flex justify-center mt-10 lg:mt-0 z-30">
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -64,13 +61,11 @@ export default function Home() {
         </div>
 
         {/* ================= RIGHT SIDEBAR ================= */}
-        <div className="relative w-full lg:w-1/2  bg-foreground flex flex-col justify-center items-center">
+        <div className="relative w-full lg:w-1/2 flex flex-col justify-center items-center">
           {/* Sidebar content */}
           <div className="flex w-1/2 gap-12 mx-auto justify-end">
             {/* Vertical Text */}
-            <div className="hidden lg:block font-amatic  text-white/60 text-8xl font-bold tracking-widest select-none">
-              <h2 className="[writing-mode:vertical-lr] ">BEST SELLER</h2>
-            </div>
+
             <div className=" space-y-6 lg:space-y-10 top-20 lg:top-auto">
               {[
                 "Supreme Diaper",
@@ -92,7 +87,7 @@ export default function Home() {
                     />
                   </div>
 
-                  <p className="text-white text-xs lg:text-sm group-hover:text-pink-300 transition">
+                  <p className="text-foreground text-xs lg:text-sm font-medium group-hover:text-pink-300 transition">
                     {name}
                   </p>
                 </div>
