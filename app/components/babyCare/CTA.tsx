@@ -6,10 +6,10 @@ import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
 
 const CTA = () => {
   return (
-    <section className="relative py-16 lg:py-24 bg-white overflow-hidden">
-      <div className="container mx-auto w-[90%]">
-        <div className="relative rounded-4xl border border-zinc-200/70 bg-babyCare p-6 sm:p-8 lg:p-12">
-          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <section className="relative w-full overflow-hidden bg-white ">
+      <div className="relative z-10 w-full ">
+        <div className="relative w-full border-y border-zinc-200/70 bg-babyCare px-4 py-8 sm:px-8 lg:px-12 lg:py-40">
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 w-full lg:gap-16 items-center">
             {/* Content */}
             <div>
               <p className="inline-flex items-center rounded-full border border-foreground/20 bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground">
@@ -70,6 +70,7 @@ const CTA = () => {
           </div>
         </div>
       </div>
+
     </section>
   );
 };

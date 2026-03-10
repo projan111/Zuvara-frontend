@@ -61,6 +61,11 @@ const personalHeroPackSectionImages: Record<string, string> = {
   "sanitary-pads": "/images/personalCare/sanitary-pad.png",
 };
 
+const personalComparisonImageBySlug: Record<string, string> = {
+  "period-panties": "/comparison-diapers/period-panties.png",
+  "sanitary-pads": "/comparison-diapers/pad.png",
+};
+
 const themePresets: ThemePreset[] = [
   {
     accent: "#7b2cbf",
@@ -149,11 +154,18 @@ export default function Page() {
       ? active.sizeGuideImages
       : [active.image]);
   const whyItMattersImage = active?.whyItMattersImage || active.image;
-  const trustImages = active?.trustImages || {
+  const baseTrustImages = active?.trustImages || {
     testimonialPrimary: active.image,
     testimonialSecondary: active.image,
     comparisonZuvara: active.image,
     comparisonOrdinary: active.image,
+  };
+  const personalComparisonImage =
+    personalComparisonImageBySlug[active?.slug ?? ""] || active.image;
+  const trustImages = {
+    ...baseTrustImages,
+    comparisonZuvara: personalComparisonImage,
+    comparisonOrdinary: personalComparisonImage,
   };
   const carePromiseImages =
     active?.carePromiseImages && active.carePromiseImages.length > 0

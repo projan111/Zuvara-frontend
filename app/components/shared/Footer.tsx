@@ -13,6 +13,7 @@ export default function Footer() {
   const pathname = usePathname();
   const { activeSection } = useSection();
   const isPersonal = activeSection === "personal";
+  const logoSrc = isPersonal ? "/logo/logo_secondary.svg" : "/logo/logo.png";
   const isMounted = true;
 
   const footerSections = [
@@ -43,8 +44,28 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={cn(isPersonal ? "bg-personalCare/10" : "")}>
-      <div className="container mx-auto max-w-7xl px-4 lg:px-0 pt-8 pb-16 lg:pb-0">
+    <footer
+      className={cn(
+        "relative overflow-visible w-full",
+        isPersonal ? "bg-personalCare/10" : "", 
+      )}
+    >
+      <div className="relative -top-20 left-1/2 z-20 w-screen -translate-x-1/2 overflow-visible leading-none">
+        <svg
+          className="block w-screen h-auto"
+          viewBox="0 0 824 63"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M665.5 19.2391C718.622 -3.40286 792.861 4.72495 823.341 11.6191V62.4544H0V18.8097C42.4024 -1.26519 87.0133 1.29723 104.018 5.0878C150.792 20.2177 256.89 44.144 307.098 18.8097C357.306 -6.52459 421.086 -0.894188 446.7 5.0878C497.499 19.239 612.378 41.881 665.5 19.2391Z"
+            fill={isPersonal ? "#F3E8FF" : "#FFFFFF"}
+          />
+        </svg>
+      </div>
+
+      <div className="relative z-10 container mx-auto max-w-7xl px-4 lg:px-0 pt-8 pb-16 lg:pb-0">
         {/* Section Switcher */}
         <div className="flex justify-center my-4 lg:my-8 w-full">
           <Link
@@ -120,33 +141,33 @@ export default function Footer() {
         <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* quick links */}
           <div className="hidden lg:block">
-              {footerSections.map((section, index) => (
-                <div key={index}>
-                  <h3
-                    className={cn(
-                      "text-sm lg:text-base font-semibold mb-2 lg:mb-4",
-                      isPersonal ? "text-personalCare" : "text-foreground",
-                    )}
-                  >
-                    {section.title}
-                  </h3>
-                  <ul className="space-y-1 lg:space-y-2">
-                    {section.links.map((link, linkIndex) => (
-                      <li key={linkIndex}>
-                        <Link
-                          href={link.href}
-                          className={cn(
-                            "text-sm lg:text-base hover:text-foreground! hover:underline! transition whitespace-nowrap",
-                            isPersonal ? "text-zinc-600!" : "text-zinc-600!",
-                          )}
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            {footerSections.map((section, index) => (
+              <div key={index}>
+                <h3
+                  className={cn(
+                    "text-sm lg:text-base font-semibold mb-2 lg:mb-4",
+                    isPersonal ? "text-personalCare" : "text-foreground",
+                  )}
+                >
+                  {section.title}
+                </h3>
+                <ul className="space-y-1 lg:space-y-2">
+                  {section.links.map((link, linkIndex) => (
+                    <li key={linkIndex}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "text-sm lg:text-base hover:text-foreground! hover:underline! transition whitespace-nowrap",
+                          isPersonal ? "text-zinc-600!" : "text-zinc-600!",
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
           {/* Visit Us */}
           <div>
@@ -177,12 +198,7 @@ export default function Footer() {
           {/* Newsletter */}
           <div className="md:col-span-2 lg:col-span-1 flex flex-col gap-4">
             <Link href="/" className="flex items-center shrink-0">
-              <Image
-                src="/logo/logo.png"
-                alt="Zuvara Logo"
-                width={90}
-                height={90}
-              />
+              <Image src={logoSrc} alt="Zuvara Logo" width={90} height={90} />
             </Link>
             <p className="text-sm text-zinc-700">
               Subscribe to get special offers and updates on new arrivals.
@@ -228,11 +244,7 @@ export default function Footer() {
         {/* Background Image */}
         <div className="absolute mx-auto">
           <Image
-            src={
-              isPersonal
-                ? "/new/mommiesfinal.png"
-                : "/new/babiesplural.png"
-            }
+            src={isPersonal ? "/new/mommiesfinal.png" : "/new/babiesplural.png"}
             width={1080}
             height={400}
             alt={isPersonal ? "Woman resting comfortably" : "Happy babies"}

@@ -56,6 +56,9 @@ export default function Navbar() {
 
   const isBabySection = activeSection === "baby";
   const isPersonalSection = activeSection === "personal";
+  const logoSrc = isPersonalSection
+    ? "/logo/logo_secondary.svg"
+    : "/logo/logo.png";
 
   const homeHref = isBabySection
       ? "/babyCare"
@@ -81,24 +84,30 @@ export default function Navbar() {
     const logoRect = logo.getBoundingClientRect();
 
     const handSize = 60;
-    const baseX = logoRect.left - barRect.left + logoRect.width / 2 - handSize / 2;
+    const minTapX = 24;
+    const maxTapX = Math.max(minTapX, barRect.width - handSize - 24);
+    const logoBaseX =
+      logoRect.left - barRect.left + logoRect.width / 2 - handSize / 2;
+    const clampTapX = (x: number) => Math.min(maxTapX, Math.max(minTapX, x));
+    const randomTapX = () => clampTapX(logoBaseX + gsap.utils.random(-20, 20));
+    const startX = randomTapX();
     const logoTopInBar = logoRect.top - barRect.top;
     const enterY = logoTopInBar + logoRect.height * 0.18;
     const tapY = logoTopInBar + logoRect.height * 0.5;
-    const shadowBaseX = baseX + handSize / 2 - 22;
+    const shadowBaseX = startX + handSize / 2 - 22;
     const shadowY = tapY + 34;
     const taps = Math.floor(Math.random() * 2) + 2; // 2–3 taps
     const entryY = 60;
-    const tapDownDuration = 0.4;
-    const tapUpDuration = 0.4;
-    const swayDuration = 0.3;
+    const tapDownDuration = 0.6;
+    const tapUpDuration = 0.6;
+    const swayDuration = 0.45;
 
     gsap.killTweensOf(hand);
     gsap.killTweensOf(shadow);
 
     gsap.set(hand, {
       autoAlpha: 1,
-      x: baseX,
+      x: startX,
       y: enterY,
       rotate: 180 + gsap.utils.random(-4, 4),
       scale: 1,
@@ -117,7 +126,7 @@ export default function Navbar() {
       onComplete: () => {
         gsap.set(hand, {
           autoAlpha: 1,
-          x: baseX,
+          x: startX,
           y: -150,
           scaleX: 1,
           scaleY: 1,
@@ -136,21 +145,23 @@ export default function Navbar() {
 
     tl.to(hand, {
       y: entryY,
-      duration: 0.42,
+      duration: 0.6,
       ease: "sine.out",
     }).to(
       shadow,
       {
-        autoAlpha: 0.2,
-        duration: 0.42,
+        autoAlpha: 0.3,
+        duration: 0.6,
         ease: "sine.out",
       },
       "<",
     );
 
     for (let i = 0; i < taps; i++) {
-      const hitX = baseX + gsap.utils.random(-7, 7);
-      const riseX = baseX + gsap.utils.random(-5, 5);
+      const hitX = randomTapX();
+      const riseX = clampTapX(hitX + gsap.utils.random(-10, 10));
+      const hitShadowX = hitX + handSize / 2 - 22;
+      const riseShadowX = riseX + handSize / 2 - 22;
 
       // tap down
       tl.to(hand, {
@@ -164,10 +175,10 @@ export default function Navbar() {
       }).to(
         shadow,
         {
-          x: shadowBaseX + gsap.utils.random(-3, 3),
-          autoAlpha: 0.44,
-          scaleX: 1.08,
-          scaleY: 0.96,
+          x: hitShadowX + gsap.utils.random(-3, 3),
+          autoAlpha: 0.72,
+          scaleX: 1.2,
+          scaleY: 1.02,
           duration: tapDownDuration,
           ease: "sine.in",
         },
@@ -186,8 +197,8 @@ export default function Navbar() {
       }).to(
         shadow,
         {
-          x: shadowBaseX + gsap.utils.random(-2, 2),
-          autoAlpha: 0.2,
+          x: riseShadowX + gsap.utils.random(-2, 2),
+          autoAlpha: 0.3,
           scaleX: 0.84,
           scaleY: 0.76,
           duration: tapUpDuration,
@@ -197,14 +208,16 @@ export default function Navbar() {
       );
 
       // tiny side sway so it feels playful
+      const swayX = randomTapX();
+      const swayShadowX = swayX + handSize / 2 - 22;
       tl.to(hand, {
-        x: baseX + gsap.utils.random(-6, 6),
+        x: swayX,
         duration: swayDuration,
         ease: "sine.inOut",
       }).to(
         shadow,
         {
-          x: shadowBaseX + gsap.utils.random(-2, 2),
+          x: swayShadowX + gsap.utils.random(-2, 2),
           duration: swayDuration,
           ease: "sine.inOut",
         },
@@ -215,8 +228,8 @@ export default function Navbar() {
     // fly away
     tl.to(hand, {
       y: -150,
-      x: baseX + gsap.utils.random(-8, 8),
-      duration: 0.5,
+      x: randomTapX(),
+      duration: 0.7,
       ease: "power3.in",
     }).to(
       shadow,
@@ -232,6 +245,8 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    if (!isBabySection || isSmallerDevice) return;
+
     const startLoop = () => {
       const delay = 9000 + Math.random() * 2000; // 9–11 seconds
 
@@ -246,18 +261,35 @@ export default function Navbar() {
     return () => {
       if (randomTimerRef.current) clearTimeout(randomTimerRef.current);
     };
-  }, []);
+  }, [isBabySection, isSmallerDevice]);
+
+  useEffect(() => {
+    if (isBabySection) return;
+
+    if (randomTimerRef.current) clearTimeout(randomTimerRef.current);
+    isPlayingRef.current = false;
+
+    if (handRef.current) {
+      gsap.killTweensOf(handRef.current);
+      gsap.set(handRef.current, { autoAlpha: 0, y: -150 });
+    }
+
+    if (handShadowRef.current) {
+      gsap.killTweensOf(handShadowRef.current);
+      gsap.set(handShadowRef.current, { autoAlpha: 0, scaleX: 0.78, scaleY: 0.72 });
+    }
+  }, [isBabySection]);
 
   useEffect(() => {
     if (isSmallerDevice) return;
-    if (!pathname.startsWith("/babyCare")) return;
+    if (!isBabySection) return;
 
     const timer = window.setTimeout(() => {
       if (!isPlayingRef.current) playLogoHand();
     }, 450);
 
     return () => window.clearTimeout(timer);
-  }, [pathname, isSmallerDevice]);
+  }, [pathname, isSmallerDevice, isBabySection]);
 
   /* ───────────────────────── Search logic (NO any) ───────────────────────── */
 
@@ -449,15 +481,21 @@ export default function Navbar() {
                     alt="baby hand"
                     width={60}
                     height={60}
-                    className="absolute top-0 left-0 pointer-events-none z-50 select-none opacity-0 will-change-transform"
+                    className={cn(
+                      "absolute top-0 left-0 pointer-events-none z-50 select-none opacity-0 will-change-transform",
+                      !isBabySection && "hidden",
+                    )}
                 />
                 <div
                     ref={handShadowRef}
                     aria-hidden="true"
-                    className="absolute top-0 left-0 h-3 w-11 rounded-full pointer-events-none z-40 opacity-0 will-change-transform"
+                    className={cn(
+                      "absolute top-0 left-0 h-3 w-11 rounded-full pointer-events-none z-40 opacity-0 will-change-transform",
+                      !isBabySection && "hidden",
+                    )}
                     style={{
-                      backgroundColor: "rgba(36, 104, 94, 0.45)",
-                      filter: "blur(7px)",
+                      backgroundColor: "rgba(69, 160, 118, 0.62)",
+                      filter: "blur(8px)",
                     }}
                 />
 
@@ -480,7 +518,7 @@ export default function Navbar() {
                     className="flex items-center shrink-0"
                 >
                   <Image
-                      src="/logo/logo.png"
+                      src={logoSrc}
                       alt="Zuvara Logo"
                       width={90}
                       height={90}
@@ -676,7 +714,7 @@ export default function Navbar() {
               >
                 <Link href="/" className="flex items-center">
                   <Image
-                      src="/logo/logo.png"
+                      src={logoSrc}
                       alt="Zuvara Logo"
                       width={90}
                       height={90}

@@ -148,12 +148,12 @@ const conceptImages = [
   "/images/baby/baby27.png",
 ];
 
-const ordinaryComparisonImageBySlug: Record<string, string> = {
-  "supreme-diapers": "/new/nonbrand/supreme-diaper.jpg",
-  "premium-diapers-pants": "/new/nonbrand/premium-diaper.jpg",
-  "value-diapers-pants": "/new/nonbrand/value-diaper.jpg",
-  "moisturising-tissue": "/new/nonbrand/tissue.jpg",
-  "value-wet-wipes": "/new/nonbrand/wetwipes.jpg",
+const comparisonImageBySlug: Record<string, string> = {
+  "supreme-diapers": "/comparison-diapers/supreme-diaper.png",
+  "premium-diapers-pants": "/comparison-diapers/premium-diaper.png",
+  "value-diapers-pants": "/comparison-diapers/value-diaper.png",
+  "moisturising-tissue": "/comparison-diapers/tissue.png",
+  "value-wet-wipes": "/comparison-diapers/wet-wipes.png",
 };
 
 const comparisonRows = [
@@ -237,11 +237,11 @@ export default function Page() {
   const activeImageSet =
     productImageSets[active?.slug ?? ""] ||
     productImageSets["supreme-diapers"];
+  const comparisonImage =
+    comparisonImageBySlug[active?.slug ?? ""] || active?.image || heroPackSrc;
   const trustImages = {
-    comparisonZuvara: active?.image || heroPackSrc,
-    comparisonOrdinary:
-      ordinaryComparisonImageBySlug[active?.slug ?? ""] ||
-      "/new/nonbrand/supreme-diaper.jpg",
+    comparisonZuvara: comparisonImage,
+    comparisonOrdinary: comparisonImage,
   };
 
   useEffect(() => {
