@@ -30,7 +30,7 @@ const HeroSection = () => {
     <div
       className={cn(
         "relative h-[75vh] lg:min-h-screen flex lg:items-center justify-center ",
-        isPersonal ? "bg-personalCare/10" : "bg-babyCare/20",
+        isPersonal ? "bg-personalCare/10" : "bg-[#bfddca]",
       )}
     >
         <div
@@ -60,7 +60,7 @@ const HeroSection = () => {
                 "absolute -top-16 md:top-0 lg:-top-16 left-0 z-10 p-4 w-full max-w-55 md:max-w-70 h-36 md:h-28 rounded-2xl",
                 isPersonal
                   ? "bg-personalCare/50 text-white"
-                  : "bg-babyCare/70 text-foreground",
+                  : "bg-babyCare text-foreground",
               )}
             >
               <TypingAnimation

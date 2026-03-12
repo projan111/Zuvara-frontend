@@ -75,7 +75,7 @@ const Product = () => {
   return (
     <>
       {/* ================= PRODUCT SECTION ================= */}
-      <section className="relative py-8 lg:pb-20">
+      <section className="relative py-8 lg:pb-28">
         <div
           className="absolute -bottom-1 left-1/2 z-20 w-screen -translate-x-1/2 overflow-visible leading-none [&>svg]:block [&>svg]:h-auto [&>svg]:w-screen"
           dangerouslySetInnerHTML={{ __html: productBottomWave.markup }}
@@ -137,7 +137,7 @@ const Product = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-8 pb-10 flex flex-wrap justify-center gap-5"
+            className="mt-8 pb-10 flex flex-wrap justify-center gap-5 max-w-7xl mx-auto"
           >
             {products.map((product, index) => (
               <Link

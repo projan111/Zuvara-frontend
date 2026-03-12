@@ -33,7 +33,7 @@ export default function WhyZuvaraProductsSection({
   const productBottomWave = assetWithFill(wave3Svg, "#f2f7f5");
 
   return (
-    <section className="relative overflow-hidden bg-babyCare px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pb-28">
+    <section className="relative overflow-hidden bg-babyCare px-4 sm:px-6 lg:px-8  lg:pb-36">
 
         <div
         className="pointer-events-none absolute -bottom-1 left-1/2 z-20 w-screen -translate-x-1/2 overflow-visible leading-none [&>svg]:block [&>svg]:h-auto [&>svg]:w-screen"

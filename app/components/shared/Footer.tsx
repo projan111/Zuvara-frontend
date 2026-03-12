@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { contactLists, socialLinks } from "@/constants";
 
 import CrawlingBaby from "./CrawlingBaby";
+import { wave1Svg, wave2Svg } from "@/constants/svgs";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -176,7 +177,7 @@ export default function Footer() {
                 type="email"
                 placeholder="Your email"
                 className={cn(
-                  "w-full px-3 py-2 border border-zinc-400 text-sm focus:outline-none rounded-full",
+                  "w-full px-3 py-2 border-2 border-zinc-800 text-sm focus:outline-none rounded-full",
                   isPersonal
                     ? "focus:border-personalCare"
                     : "focus:border-foreground",
@@ -192,16 +193,25 @@ export default function Footer() {
               </button>
             </div>
 
-            <div className="flex justify-center lg:justify-start items-center gap-8">
-              {socialLinks.map((social) => (
-                <Link href={social.link} key={social.id} className="">
-                  {/* <Icon icon={social.icon} width={32} height={32} /> */}
-                  <Icon
-                    icon={social.icon}
-                    className="size-6 cursor-pointer scale-100 hover:scale-[1.4] transition-all duration-500"
-                  />
-                </Link>
-              ))}
+            <div className="flex items-center justify-center gap-5 lg:justify-start">
+              {socialLinks.map((social) => {
+                return (
+                  <Link
+                    href={social.link}
+                    key={social.id}
+                    aria-label={social.title}
+                    className={cn(
+                      "inline-flex items-center justify-center transition-transform duration-300 hover:scale-110",
+                      "opacity-95 hover:opacity-100",
+                    )}
+                  >
+                    <Icon
+                      icon={social.fillIcon || social.icon}
+                      className="size-6 grayscale"
+                    />
+                  </Link>
+                );
+              })}
             </div>
           </div>
           <div>
@@ -299,7 +309,7 @@ export default function Footer() {
 
       <div className="relative h-[34vh] sm:h-[40vh] md:h-[46vh] flex items-center justify-center overflow-hidden px-4">
         {/* Background Image */}
-        <div className="absolute mx-auto">
+        {/* <div className="absolute mx-auto">
           <Image
             src={isPersonal ? "/new/mommiesfinal.png" : "/new/babiesplural.png"}
             width={1080}
@@ -312,7 +322,15 @@ export default function Footer() {
                 : "",
             )}
           />
-        </div>
+        </div> */}
+          <div
+                  className="absolute -bottom-1 z-0 h-auto w-full [&>svg]:block [&>svg]:h-auto [&>svg]:w-full"
+                  dangerouslySetInnerHTML={{ __html: wave1Svg.markup }}
+                />
+                <div
+                  className="absolute inset-x-0 -bottom-1 z-10 h-auto w-full [&>svg]:block [&>svg]:h-auto [&>svg]:w-full"
+                  dangerouslySetInnerHTML={{ __html: wave2Svg.markup }}
+                />
         {/* Bottom Copyright */}
         <div
           className={cn(
