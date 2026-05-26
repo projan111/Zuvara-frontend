@@ -44,7 +44,7 @@ const ProductList = () => {
     <section className="container lg:min-h-screen mx-auto py-8 lg:py-20 px-4 sm:px-6 lg:px-6 max-w-7xl">
       <SectionIntro
         align="center"
-        className={`${sectionIntroSpacing} max-w-4xl`}
+        className={`${sectionIntroSpacing} max-w-4xl mx-auto`}
         eyebrow={
           <span className="inline-flex rounded-full border border-personalCare/20 bg-personalCare/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-personalCare">
             Shop the range
@@ -63,7 +63,7 @@ const ProductList = () => {
         descriptionClassName="text-sm font-medium leading-relaxed text-zinc-600 md:text-base"
       />
       <div
-        className={`${sectionContentSpacing} grid grid-cols-2 gap-2 justify-center `}
+        className={`${sectionContentSpacing} flex flex-wrap justify-center gap-6 lg:gap-8 max-w-5xl mx-auto`}
       >
         {personalCareProducts.map((product, index) => {
           const cardTheme = getCardTheme(product);
@@ -72,47 +72,47 @@ const ProductList = () => {
             <Link
               key={product.id}
               href={`/personalCareProduct/${product.slug}`}
-              className="group block w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(25%-0.9375rem)]"
+              className="group block w-[calc(50%-0.75rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm"
             >
               <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.06, duration: 0.45 }}
                 viewport={{ once: true }}
-                className="flex h-full  flex-col gap-4 rounded-4xl transition-transform duration-300 group-hover:-translate-y-1"
+                className="flex h-full flex-col gap-5 rounded-4xl transition-transform duration-300 group-hover:-translate-y-1"
               >
                 <div
-                  className="relative flex h-40 items-center justify-center overflow-hidden rounded-[1.75rem] py-2 sm:h-56"
+                  className="relative flex h-64 sm:h-72 lg:h-80 items-center justify-center overflow-hidden rounded-[2rem] py-4"
                   style={{ backgroundColor: cardTheme.background }}
                 >
                   <div
-                    className="pointer-events-none absolute inset-x-6 bottom-4 h-9 rounded-full blur-2xl"
+                    className="pointer-events-none absolute inset-x-6 bottom-4 h-12 rounded-full blur-2xl"
                     style={{ backgroundColor: `${cardTheme.foreground}2e` }}
                   />
                   <Image
                     src={product.image || product.variants?.[0]?.image}
                     alt={product.name}
                     fill
-                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                    sizes="(min-width: 1024px) 20vw, (min-width: 640px) 40vw, 90vw"
+                    className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 90vw"
                   />
                 </div>
 
-                <div className="flex flex-1 items-center justify-between px-2 pb-4">
+                <div className="flex flex-1 items-center justify-between px-3 pb-2">
                   <h3
-                    className="max-w-40 text-sm font-semibold leading-snug sm:max-w-52 sm:text-base"
+                    className="text-base font-semibold leading-snug sm:text-lg"
                     style={{ color: cardTheme.foreground }}
                   >
                     {product.name}
                   </h3>
                   <span
-                    className="shrink-0 rounded-full p-2 -rotate-45 transition-transform duration-300 group-hover:translate-x-1"
+                    className="shrink-0 rounded-full p-2.5 -rotate-45 transition-transform duration-300 group-hover:translate-x-1"
                     style={{
                       backgroundColor: cardTheme.chip,
                       color: cardTheme.foreground,
                     }}
                   >
-                    <ArrowRight size={16} />
+                    <ArrowRight size={18} />
                   </span>
                 </div>
               </motion.article>

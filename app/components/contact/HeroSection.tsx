@@ -13,7 +13,7 @@ const HeroSection = () => {
   const { activeSection } = useSection();
   const isPersonal = activeSection === "personal";
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const imageSize = isPersonal ? (isMobile ? 220 : 380) : isMobile ? 180 : 260;
+  const imageSize = isPersonal ? (isMobile ? 220 : 380) : isMobile ? 270 : 390;
   const wave = assetWithFill(wave4Svg, isPersonal ? "#f4e8fc" : "#ffffff");
 
   return (
@@ -89,7 +89,7 @@ const HeroSection = () => {
         src={
           isPersonal
             ? "/new/contacpagemom.png"
-            : "/images/baby/baby-calling.webp"
+            : "/1080x1080_AME/050_clip-0400Wave-comp-v04.gif"
         }
         alt={isPersonal ? "mom calling" : "baby calling"}
         width={imageSize}

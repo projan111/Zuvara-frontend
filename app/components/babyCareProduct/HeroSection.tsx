@@ -72,7 +72,7 @@ const HeroSection = ({ theme = babyCareListingTheme }: HeroSectionProps) => {
   return (
     <section
       ref={containerRef}
-      className="relative isolate min-h-[75vh] overflow-hidden bg-babyCare/50 px-4 py-10 sm:px-6 md:min-h-[88vh] md:py-12 lg:px-10"
+      className="relative isolate min-h-[75vh] overflow-hidden bg-babyCare/50 px-4 py-10 sm:px-6 md:-min=h-[88vh] md:py-12 lg:px-10"
     >
         <div
         className="pointer-events-none absolute -bottom-1 left-1/2 z-20 w-screen -translate-x-1/2 overflow-visible leading-none [&>svg]:block [&>svg]:h-auto [&>svg]:w-screen"
@@ -84,7 +84,7 @@ const HeroSection = ({ theme = babyCareListingTheme }: HeroSectionProps) => {
         </div> */}
 
         <h2
-          className="hero-copy mt-6 max-w-4xl text-[clamp(2rem,8vw,3.6rem)] font-semibold leading-[0.95] tracking-tight"
+          className="hero-copy mt-4 max-w-4xl text-[clamp(1.75rem,7vw,3rem)] font-semibold leading-[0.95] tracking-tight"
           style={{ color: theme.accent }}
         >
           Everyday baby care,
@@ -96,12 +96,12 @@ const HeroSection = ({ theme = babyCareListingTheme }: HeroSectionProps) => {
           </span>
         </h2>
 
-        <p className="hero-copy mt-5 max-w-2xl text-sm font-medium leading-relaxed text-zinc-600 md:text-base">
+        <p className="hero-copy mt-3 max-w-2xl text-sm font-medium leading-relaxed text-zinc-600 md:text-base">
           Discover essentials designed to feel gentle, look refined, and support
           your baby through every daily moment with softness and safety.
         </p>
 
-        <div className="hero-copy mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div className="hero-copy mt-4 flex flex-wrap items-center justify-center gap-3">
           {heroPills.map((pill) => (
             <span
               key={pill}
@@ -116,9 +116,9 @@ const HeroSection = ({ theme = babyCareListingTheme }: HeroSectionProps) => {
           ))}
         </div>
 
-        <div className="hero-visual relative mt-12 flex w-full justify-center md:mt-14 z-20">
+        <div className="hero-visual relative mt-4 flex w-full justify-center md:mt-5 z-20">
           <div className="relative w-full max-w-4xl">
-            <div className="hero-float absolute left-0 top-10 hidden w-52 rounded-[1.8rem] border border-white/60 bg-white/50 p-4 text-left shadow-[0_18px_38px_rgba(69,104,94,0.12)] backdrop-blur-sm lg:block">
+            <div className="hero-float absolute left-0 top-6 hidden w-52 rounded-[1.8rem] border border-white/60 bg-white/50 p-4 text-left shadow-[0_18px_38px_rgba(69,104,94,0.12)] backdrop-blur-sm lg:block">
               <p className="text-sm font-semibold" style={{ color: theme.accent }}>
                 {floatingNotes[0].title}
               </p>
@@ -127,7 +127,7 @@ const HeroSection = ({ theme = babyCareListingTheme }: HeroSectionProps) => {
               </p>
             </div>
 
-            <div className="hero-float absolute right-0 top-20 hidden w-52 rounded-[1.8rem] border border-white/60 bg-white/50 p-4 text-left shadow-[0_18px_38px_rgba(69,104,94,0.12)] backdrop-blur-sm lg:block">
+            <div className="hero-float absolute right-0 top-6 hidden w-52 rounded-[1.8rem] border border-white/60 bg-white/50 p-4 text-left shadow-[0_18px_38px_rgba(69,104,94,0.12)] backdrop-blur-sm lg:block">
               <p className="text-sm font-semibold" style={{ color: theme.accent }}>
                 {floatingNotes[1].title}
               </p>
@@ -136,14 +136,17 @@ const HeroSection = ({ theme = babyCareListingTheme }: HeroSectionProps) => {
               </p>
             </div>
 
-            <div className="hero-float relative mx-auto flex h-80 w-full max-w-4xl items-end justify-center overflow-hidden rounded-[2.6rem] px-4 pt-8 sm:h-100 sm:px-6 sm:pt-10 md:h-125 lg:h-140">
-              <Image
-                src="/images/baby/baby-with-product.webp"
-                alt="Baby with product"
-                fill
-                priority
-                className="object-contain object-bottom"
-              />
+            <div className="hero-float relative mx-auto h-56 w-full max-w-4xl overflow-visible rounded-[2.6rem] sm:h-72 md:h-80 lg:h-96">
+              <div className="absolute inset-0 -translate-y-12 sm:-translate-y-16 md:-translate-y-20 lg:-translate-y-24">
+                <Image
+                  src="/1080x1080_AME/050_clip-0500-comp-v04.gif"
+                  alt="Baby with product"
+                  fill
+                  priority
+                  unoptimized
+                  className="object-contain"
+                />
+              </div>
             </div>
 
             <div className="hero-copy mt-6 flex items-center justify-center gap-3 md:hidden">

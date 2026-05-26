@@ -416,16 +416,12 @@ export default function Home() {
                       />
                     </div>
                   </div>
-                  <video
-                    className="hero-baby-video relative z-10 h-60 w-full rounded-[1.6rem] object-cover object-top"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    poster="/images/baby/baby31.png"
-                    src="/videos/babyPlaying.mp4"
-                  ></video>
+                  <Image
+                    src="/1080x1080_AME/Zuv_0200clip_bgoff_v01.gif"
+                    alt="baby"
+                    fill
+                    className="object-cover object-top"
+                  />
                 </div>
               </div>
 
@@ -453,16 +449,12 @@ export default function Home() {
               </div>
             </div>
             <div className="relative h-full w-full overflow-hidden rounded-[2.2rem]">
-              <video
-                className="hero-baby-video h-full w-full object-cover object-top rotate-y-180"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                poster="/images/baby/baby31.png"
-                src="/videos/babyPlaying.mp4"
-              />
+               <Image
+                    src="/1080x1080_AME/Zuv_0200clip_bgoff_v01.gif"
+                    alt="baby"
+                    fill
+                    className="object-cover object-top"
+                  />
             </div>
           </div>
         </div>

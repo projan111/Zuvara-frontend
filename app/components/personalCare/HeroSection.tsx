@@ -13,7 +13,7 @@ const comfortPoints = [
 const HeroSection = () => {
   return (
     <section className="relative min-h-svh overflow-hidden bg-personalCare/8">
-      <div className="absolute inset-y-0 right-0 hidden w-[44%] bg-linear-to-b from-personalCare/90 via-personalCare to-personalCare/80 lg:block" />
+      {/* <div className="absolute inset-y-0 right-0 hidden w-[44%] bg-linear-to-b from-personalCare/90 via-personalCare to-personalCare/80 lg:block" /> */}
 
       <div className="relative mx-auto flex min-h-svh w-[92%] max-w-7xl flex-col justify-center py-12 sm:py-14 lg:py-16">
         <div className="grid items-center gap-10 lg:min-h-[calc(100svh-8rem)] lg:grid-cols-[0.95fr_0.85fr_1.05fr] lg:gap-8">

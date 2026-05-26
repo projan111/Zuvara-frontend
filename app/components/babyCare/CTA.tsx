@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
 import SectionIntro, { sectionContentSpacing } from "../common-ui/SectionIntro";
 import { wave4Svg } from "@/constants/svgs";
+import Image from "next/image";
 
 const CTA = () => {
   return (
@@ -55,7 +56,10 @@ const CTA = () => {
                       playsInline
                       className="h-48 w-full object-cover"
                     >
-                      <source src="/videos/new-zuv.mp4" type="video/mp4" />
+                      <source
+                        src="/videos/1080x1080/_avi_3.mp4"
+                        type="video/mp4"
+                      />
                     </video>
                   </div>
 
@@ -112,16 +116,8 @@ const CTA = () => {
             </div>
 
             {/* Desktop Video Section - Clean without background box */}
-            <div className="relative h-80 w-full sm:h-95 lg:h-[450px] rounded-[2rem] overflow-hidden">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="h-full w-full object-cover"
-              >
-                <source src="/videos/new-zuv.mp4" type="video/mp4" />
-              </video>
+            <div className="relative h-80 w-full sm:h-95 lg:h-112.5 bg-transparent rounded-[2rem] overflow-hidden">
+              <Image src="/1080x1080_AME/050_clip-0400blink-comp-v05.gif" alt="Baby Care Video" fill className="object-cover object-center" />
             </div>
           </div>
         </div>
