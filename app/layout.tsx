@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Montserrat, Amatic_SC } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "./providers/LenisProvider";
+import QueryProvider from "./providers/query-providers";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -43,8 +44,10 @@ export default function RootLayout({
         <WhatsAppButton />
         <LenisProvider>
           <SectionProvider>
-            {children}
-            {/* <CrawlingBaby /> */}
+            <QueryProvider>
+              {children}
+              {/* <CrawlingBaby /> */}
+            </QueryProvider>
           </SectionProvider>
         </LenisProvider>
       </body>
