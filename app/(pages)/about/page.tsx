@@ -60,24 +60,6 @@ const promises = [
   },
 ];
 
-const team = [
-  {
-    name: "Abhilash Bansal",
-    role: "Director",
-    image: "/partners/About/abhilash-bansal-director.avif",
-  },
-  {
-    name: "Nikhil Bansal",
-    role: "Managing Director",
-    image: "/partners/About/nikhil-bansal.avif",
-  },
-  {
-    name: "Shasank Bansal",
-    role: "Director",
-    image: "/partners/About/shasank-bansal-director.avif",
-  },
-];
-
 export default function AboutPage() {
   const { activeSection } = useSection();
   const isPersonal = activeSection === "personal";
@@ -160,7 +142,7 @@ export default function AboutPage() {
       
       </div>
       <div className="relative" style={{ backgroundColor: sectionBg.team }}>
-        <AboutTeamSection palette={pagePalette} team={team}  />
+        <AboutTeamSection palette={pagePalette} />
         <div
           className={waveClass}
           dangerouslySetInnerHTML={{ __html: teamWave.markup }}
