@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -13,6 +14,7 @@ import {
 import { useSection } from "@/app/providers/SectionProvider";
 import { cn } from "@/lib/utils";
 import { contactLists, socialLinks } from "@/constants";
+import { api } from "@/config/axios-config";
 
 import CrawlingBaby from "./CrawlingBaby";
 
@@ -23,6 +25,28 @@ export default function Footer() {
 
   const logoSrc = isPersonal ? "/logo/logo_secondary.svg" : "/logo/logo.png";
   const isMounted = true;
+
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    try {
+      await api.post("/newsletter/create", { email });
+      setStatus("success");
+      setEmail("");
+      alert("Subscribed successfully!");
+    } catch (error) {
+      console.error("Subscription error:", error);
+      setStatus("error");
+      alert("Subscription failed. Please try again.");
+    } finally {
+      setTimeout(() => setStatus("idle"), 3000);
+    }
+  };
 
   const footerSections = [
     {
@@ -185,10 +209,14 @@ export default function Footer() {
             <p className="text-sm text-zinc-700">
               Subscribe to get special offers and updates on new arrivals.
             </p>
-            <div className="relative">
+            <form onSubmit={handleSubscribe} className="relative">
               <input
                 type="email"
                 placeholder="Your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === "loading"}
+                required
                 className={cn(
                   "w-full px-3 py-2 border-2 border-zinc-800 text-sm focus:outline-none rounded-full",
                   isPersonal
@@ -197,14 +225,19 @@ export default function Footer() {
                 )}
               />
               <button
+                type="submit"
+                disabled={status === "loading"}
                 className={cn(
-                  "absolute top-1/2 -translate-y-1/2 right-1 rounded-full text-white transition",
+                  "absolute top-1/2 -translate-y-1/2 right-1 rounded-full text-white transition disabled:opacity-50",
                   isPersonal ? "bg-personalCare" : "bg-foreground",
                 )}
               >
-                <Icon icon="iconamoon:arrow-right-2-light" className="size-8" />
+                <Icon 
+                  icon={status === "loading" ? "line-md:loading-loop" : "iconamoon:arrow-right-2-light"} 
+                  className="size-8 p-1" 
+                />
               </button>
-            </div>
+            </form>
 
             <div className="flex items-center justify-center gap-3 lg:justify-start">
               {socialLinks.map((social) => {

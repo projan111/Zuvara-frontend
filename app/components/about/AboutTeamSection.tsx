@@ -99,7 +99,7 @@ export default function AboutTeamSection({
                   </p>
                   {member.description && (
                     <p className="mt-2 text-xs text-white/70 line-clamp-2">
-                      {member.description}
+                      {member.description.replace(/<[^>]*>/g, "")}
                     </p>
                   )}
                 </div>

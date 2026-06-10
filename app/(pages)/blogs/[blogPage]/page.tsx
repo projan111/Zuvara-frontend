@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
-import { blogLists } from "@/constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,21 +9,129 @@ import { cn } from "@/lib/utils";
 import { useSection } from "@/app/providers/SectionProvider";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import DOMPurify from "dompurify";
+import { useBlogBySlug, useBlogs } from "@/hooks/useBlog";
+
+const formatDate = (isoString: string) => {
+  try {
+    const date = new Date(isoString);
+    return date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  } catch {
+    return "Recent";
+  }
+};
 
 const BlogDetailPage = () => {
-  const { blogPage } = useParams();
+  const params = useParams();
+  const blogPage = params?.blogPage;
+  const slug = Array.isArray(blogPage) ? blogPage[0] : blogPage;
+  
   const { activeSection } = useSection();
   const isPersonal = activeSection === "personal";
 
-  const blog = useMemo(
-    () => blogLists.find((b) => b.slug === blogPage) || null,
-    [blogPage],
-  );
+  const { data: blog, isLoading: isBlogLoading } = useBlogBySlug(slug || "");
+  const { data: allBlogsData } = useBlogs();
 
   const relatedBlogs = useMemo(() => {
-    if (!blog) return [];
-    return blogLists.filter((b) => b.id !== blog.id).slice(0, 3);
-  }, [blog]);
+    if (!blog || !allBlogsData?.blogs) return [];
+    
+    const matches = allBlogsData.blogs.filter(
+      (b) => b.id !== blog.id && b.portal?.slug === blog.portal?.slug
+    );
+    
+    const candidates = matches.length > 0 
+      ? matches 
+      : allBlogsData.blogs.filter((b) => b.id !== blog.id);
+
+    return candidates.slice(0, 3).map((item) => {
+      const authorName = "Zuvara Team";
+      return {
+        id: item.id,
+        slug: item.slug,
+        title: item.title,
+        desc: item.excerpt,
+        image: item.coverImage?.[0] || "/images/placeholder.png",
+        category: item.portal?.name || "General",
+        author: authorName,
+        date: formatDate(item.createdAt),
+      };
+    });
+  }, [blog, allBlogsData]);
+
+  if (isBlogLoading) {
+    return (
+      <div className="min-h-screen bg-zinc-50 lg:mt-5 animate-pulse">
+        {/* Hero Section Skeleton */}
+        <section className="px-4 pb-6 pt-4 sm:px-6 lg:px-0 lg:pb-10">
+          <div className="container mx-auto max-w-7xl">
+            <div className="relative h-[62vh] rounded-4xl bg-zinc-200 lg:h-[74vh] flex items-end p-5 sm:p-8 lg:p-10">
+              <div className="w-full max-w-4xl space-y-4">
+                {/* Breadcrumbs */}
+                <div className="flex gap-2">
+                  <div className="h-6 w-16 bg-zinc-300 rounded-full" />
+                  <div className="h-6 w-16 bg-zinc-300 rounded-full" />
+                  <div className="h-6 w-32 bg-zinc-300 rounded-full" />
+                </div>
+                {/* Category tag */}
+                <div className="h-7 w-24 bg-zinc-300 rounded-full" />
+                {/* Title lines */}
+                <div className="h-10 bg-zinc-300 rounded-xl w-3/4 sm:h-12" />
+                <div className="h-10 bg-zinc-300 rounded-xl w-1/2 sm:h-12" />
+                {/* Author info */}
+                <div className="flex items-center gap-3 pt-2">
+                  <div className="size-10 rounded-full bg-zinc-300 lg:size-12" />
+                  <div className="space-y-2">
+                    <div className="h-3 w-16 bg-zinc-300 rounded" />
+                    <div className="h-4 w-28 bg-zinc-300 rounded" />
+                  </div>
+                  <div className="h-8 w-px bg-zinc-300 mx-2" />
+                  <div className="space-y-2">
+                    <div className="h-3 w-20 bg-zinc-300 rounded" />
+                    <div className="h-4 w-24 bg-zinc-300 rounded" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Content Section Skeleton */}
+        <section className="bg-white pb-12 pt-6 lg:pb-16 lg:pt-10">
+          <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-0 space-y-6">
+            <div className="border-b border-zinc-200 pb-4 flex justify-between items-center">
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-full bg-zinc-200" />
+                <div className="space-y-1.5">
+                  <div className="h-4 w-24 bg-zinc-200 rounded" />
+                  <div className="h-3 w-16 bg-zinc-200 rounded" />
+                </div>
+              </div>
+              <div className="h-4 w-16 bg-zinc-200 rounded" />
+            </div>
+            
+            {/* Paragraph lines */}
+            <div className="space-y-3">
+              <div className="h-4 bg-zinc-200 rounded w-full" />
+              <div className="h-4 bg-zinc-200 rounded w-full" />
+              <div className="h-4 bg-zinc-200 rounded w-11/12" />
+              <div className="h-4 bg-zinc-200 rounded w-5/6" />
+            </div>
+
+            <div className="h-8 bg-zinc-200 rounded w-1/3 mt-8" />
+            
+            <div className="space-y-3">
+              <div className="h-4 bg-zinc-200 rounded w-full" />
+              <div className="h-4 bg-zinc-200 rounded w-full" />
+              <div className="h-4 bg-zinc-200 rounded w-4/5" />
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   if (!blog) {
     return (
@@ -39,6 +146,15 @@ const BlogDetailPage = () => {
     );
   }
 
+  const authorName = "Zuvara Team";
+  const avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
+    authorName,
+  )}&top=straight01&hairColor=724133&facialHairProbability=0&mouth=smile&clothing=blazerAndShirt`;
+
+  const coverImg = Array.isArray(blog.coverImage)
+    ? (blog.coverImage[0] || "/images/placeholder.png")
+    : (blog.coverImage || "/images/placeholder.png");
+
   return (
     <div className="min-h-screen bg-zinc-50 lg:mt-5">
       {/* Hero Section */}
@@ -52,7 +168,7 @@ const BlogDetailPage = () => {
               className="absolute inset-0"
             >
               <Image
-                src={blog.image}
+                src={coverImg}
                 alt={blog.title}
                 fill
                 className="object-cover object-top"
@@ -99,7 +215,7 @@ const BlogDetailPage = () => {
                             : "border-babyCare/40 bg-babyCare/65",
                         )}
                       >
-                        {blog.category}
+                        {blog.portal?.name || "General"}
                       </span>
                     </div>
 
@@ -111,8 +227,8 @@ const BlogDetailPage = () => {
                       <div className="flex items-center gap-3">
                         <div className="relative size-10 overflow-hidden rounded-full border-2 border-white/50 bg-white/10 backdrop-blur-sm lg:size-12">
                           <Image
-                            src={blog.authorImage}
-                            alt={blog.author}
+                            src={avatarUrl}
+                            alt={authorName}
                             fill
                             className="object-cover"
                           />
@@ -122,7 +238,7 @@ const BlogDetailPage = () => {
                             Written by
                           </span>
                           <span className="text-sm font-bold lg:text-base">
-                            {blog.author}
+                            {authorName}
                           </span>
                         </div>
                       </div>
@@ -134,7 +250,7 @@ const BlogDetailPage = () => {
                           Published on
                         </span>
                         <span className="text-sm font-bold lg:text-base">
-                          {blog.date}
+                          {formatDate(blog.createdAt)}
                         </span>
                       </div>
                     </div>
@@ -160,26 +276,26 @@ const BlogDetailPage = () => {
               <div className="flex items-center gap-3">
                 <div className="relative size-10 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100">
                   <Image
-                    src={blog.authorImage}
-                    alt={blog.author}
+                    src={avatarUrl}
+                    alt={authorName}
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-zinc-900">
-                    {blog.author}
+                    {authorName}
                   </p>
-                  <p className="text-xs text-zinc-500">{blog.date}</p>
+                  <p className="text-xs text-zinc-500">{formatDate(blog.createdAt)}</p>
                 </div>
               </div>
               <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
-                {blog.category}
+                {blog.portal?.name || "General"}
               </span>
             </div>
             <div
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(blog.content) || "",
+                __html: DOMPurify.sanitize(blog.content || "") || "",
               }}
               className={cn(
                 "text-[1.12rem] leading-8 text-foreground font-medium",

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { colors } from "@/lib/tokens";
 import { motion } from "framer-motion";
+import { usePortals } from "@/hooks/usePortal";
 
 type DestinationId = "baby" | "personal";
 
@@ -22,34 +23,51 @@ type Destination = {
 
 export default function IntroPage() {
   const [activeId, setActiveId] = useState<DestinationId>("baby");
+  const { data } = usePortals();
 
-  const destinations: Destination[] = useMemo(
-    () => [
-      {
-        id: "baby",
-        label: "Baby Care",
-        title: "Baby Care",
-        subtitle: "Pure, Gentle, & Natural",
-        image: "/images/baby/baby32.png",
-        href: "/babyCare",
-        color: "var(--babyCare)",
-        icon: "/icons/xl.png",
-        description: "Everything your little one needs.",
-      },
-      {
-        id: "personal",
-        label: "Personal Care",
-        title: "Personal Care",
-        subtitle: "Self-Care Reimagined",
-        image: "/new/momnobg.png",
-        href: "/personalCare",
-        color: "var(--ternary)",
-        icon: "/icons/sanitary-napkin.png",
-        description: "Premium essentials for nourishment.",
-      },
-    ],
-    [],
-  );
+  const destinations: Destination[] = useMemo(() => {
+    if (!data?.portal || data.portal.length === 0) {
+      return [
+        {
+          id: "baby",
+          label: "Baby Care",
+          title: "Baby Care",
+          subtitle: "Pure, Gentle, & Natural",
+          image: "/images/baby/baby32.png",
+          href: "/babyCare",
+          color: "var(--babyCare)",
+          icon: "/icons/xl.png",
+          description: "Everything your little one needs.",
+        },
+        {
+          id: "personal",
+          label: "Personal Care",
+          title: "Personal Care",
+          subtitle: "Self-Care Reimagined",
+          image: "/new/momnobg.png",
+          href: "/personalCare",
+          color: "var(--ternary)",
+          icon: "/icons/sanitary-napkin.png",
+          description: "Premium essentials for nourishment.",
+        },
+      ];
+    }
+
+    return data.portal.map((p) => {
+      const isBaby = p.slug === "baby-care";
+      return {
+        id: (isBaby ? "baby" : "personal") as DestinationId,
+        label: p.name,
+        title: p.name,
+        subtitle: isBaby ? "Pure, Gentle, & Natural" : "Self-Care Reimagined",
+        image: isBaby ? "/images/baby/baby32.png" : "/new/momnobg.png",
+        href: isBaby ? "/babyCare" : "/personalCare",
+        color: isBaby ? "var(--babyCare)" : "var(--ternary)",
+        icon: p.logo || (isBaby ? "/icons/xl.png" : "/icons/sanitary-napkin.png"),
+        description: p.description,
+      };
+    });
+  }, [data]);
 
   const activeDestination =
     destinations.find((item) => item.id === activeId) ?? destinations[0];
